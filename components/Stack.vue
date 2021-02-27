@@ -1,10 +1,11 @@
 <template>
-	<ul class="stack">
+	<ul class="stack" :style="`--card-count: ${cardCount}`">
 		<li
-			v-for="card in content"
-			:key="card.id"
 			class="stack__item"
+			v-for="(card, index) in content"
+			:key="card.id"
 			:data-is-active="card.id === activeId"
+			:style="`--card-index: ${index}`"
 			@click="() => onActivate(card.id)"
 		>
 			<Card :card="card" />
@@ -13,13 +14,14 @@
 </template>
 
 <script lang="ts">
-import { ref } from '@nuxtjs/composition-api'
+import { defineComponent, PropType, ref } from '@nuxtjs/composition-api'
 import Card from './Card.vue'
+import { CardType } from '../types/types'
 
-export default {
+export default defineComponent({
 	props: {
 		content: {
-			type: Array,
+			type: Array as PropType<CardType[]>,
 			required: true,
 		},
 	},
@@ -42,7 +44,7 @@ export default {
 	components: {
 		Card,
 	},
-}
+})
 </script>
 
 <style lang="scss" scoped>
@@ -57,9 +59,9 @@ export default {
 		--width: 1em;
 		--translateY: 0;
 		--rotate: 0deg;
-		//--rotate: #{($cardsAmount * -0.5deg) - ($i * -1deg)};
+		--rotate: calc(var(--card-count) * -0.5deg - var(--card-index) * -1deg);
 
-		&:hover {
+		&:not([data-is-active='true']):hover {
 			--translateY: -1em;
 
 			&:not(:last-of-type) {
@@ -67,7 +69,7 @@ export default {
 			}
 		}
 
-		[data-is-active='true'] {
+		&[data-is-active='true'] {
 			--active: 1;
 			--rotate: 0;
 			pointer-events: none;
