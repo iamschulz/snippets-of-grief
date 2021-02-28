@@ -14,7 +14,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from '@nuxtjs/composition-api'
+import { defineComponent, PropType } from '@nuxtjs/composition-api'
+import { store } from '@/store/store'
 import Card from './Card.vue'
 import { CardType } from '../types/types'
 
@@ -26,12 +27,15 @@ export default defineComponent({
 		},
 	},
 
+	provide: {
+		store,
+	},
+
 	setup(props) {
 		const cardCount = props.content.length
-		const activeId = ref(cardCount - 1)
-		const onActivate = (id: number) => {
-			activeId.value = id
-			console.log(id)
+		const activeId = store.getActiveCardId()
+		const onActivate = (id: null | number) => {
+			store.setActiveCardId(id)
 		}
 
 		return {
@@ -53,6 +57,7 @@ export default defineComponent({
 	display: flex;
 	list-style: none;
 	margin-top: 0;
+	padding-bottom: 20em;
 
 	&__item {
 		--active: 0;

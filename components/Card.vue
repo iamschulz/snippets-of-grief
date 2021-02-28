@@ -1,5 +1,5 @@
 <template>
-	<article class="card" :data-is-active="isActive">
+	<article class="card" :data-is-active="isActive()">
 		<div class="card__content">
 			<h2>{{ card.id }}</h2>
 			<img :src="`https://picsum.photos/id/${card.id}/80/80`" alt="card.alt" />
@@ -8,7 +8,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref } from '@nuxtjs/composition-api'
+import { defineComponent, inject, PropType, ref } from '@nuxtjs/composition-api'
+import { StoreInterface } from '@/store/store'
 import { CardType } from '../types/types'
 
 export default defineComponent({
@@ -20,10 +21,9 @@ export default defineComponent({
 	},
 
 	setup(props) {
-		const isActive = ref(false)
-
-		if (props.card.id === 4) {
-			isActive.value = true
+		const store = inject('store') as StoreInterface
+		const isActive = (): boolean => {
+			return store.getActiveCardId() === props.card.id
 		}
 
 		return {
