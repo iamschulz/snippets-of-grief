@@ -53,7 +53,7 @@ export default defineComponent({
 	--diceWidth: 200px;
 	width: 0;
 	padding: var(--diceWidth);
-	margin: 10em auto;
+	margin: auto;
 	perspective: 800px;
 	perspective-origin: 0 0;
 

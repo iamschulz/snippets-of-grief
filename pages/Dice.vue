@@ -1,8 +1,8 @@
 <template lang="html">
-	<div>
-		<p>Würfel eine Textart</p>
+	<div class="centered">
+		<h1>Würfel eine Textart</h1>
 		<Dice :content="content" />
-		<NuxtLink to="/Text" v-if="isTextSelected()">Weiter</NuxtLink>
+		<NuxtLink to="/Text" v-if="isTextSelected()" class="button">Weiter</NuxtLink>
 	</div>
 </template>
 

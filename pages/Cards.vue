@@ -1,8 +1,8 @@
 <template lang="html">
-	<div>
-		<p>Zieh eine Karte</p>
+	<div class="centered">
+		<h1>Zieh eine Karte</h1>
 		<Stack :content="content" />
-		<NuxtLink to="/dice" v-if="isCardSelected()">Weiter</NuxtLink>
+		<NuxtLink to="/dice" v-if="isCardSelected()" class="button">Weiter</NuxtLink>
 	</div>
 </template>
 
