@@ -8,7 +8,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, PropType, ref } from '@nuxtjs/composition-api'
+import { defineComponent, inject, PropType } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
 import { CardType } from '../types/types'
 

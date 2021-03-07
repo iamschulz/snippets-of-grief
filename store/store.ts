@@ -6,11 +6,14 @@ import { reactive } from '@nuxtjs/composition-api'
 
 export interface StoreData {
 	activeCardId: null | number
+	activeTextId: null | number
 }
 
 export interface StoreInterface {
 	getActiveCardId: Function
 	setActiveCardId: Function
+	getActiveTextId: Function
+	setActiveTextId: Function
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -26,6 +29,7 @@ export class Store {
 	protected data(): StoreData {
 		return {
 			activeCardId: null,
+			activeTextId: null,
 		}
 	}
 
@@ -35,6 +39,14 @@ export class Store {
 
 	public setActiveCardId(id: null | number): void {
 		this.state.activeCardId = id
+	}
+
+	public getActiveTextId(): null | number {
+		return this.state.activeTextId
+	}
+
+	public setActiveTextId(id: null | number): void {
+		this.state.activeTextId = id
 	}
 }
 

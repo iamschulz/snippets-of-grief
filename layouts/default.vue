@@ -4,6 +4,17 @@
 	</div>
 </template>
 
+<script lang="ts">
+import { defineComponent } from '@nuxtjs/composition-api'
+import { store } from '@/store/store'
+
+export default defineComponent({
+	provide: {
+		store,
+	},
+})
+</script>
+
 <style>
 html {
 	font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,

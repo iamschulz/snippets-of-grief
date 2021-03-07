@@ -14,8 +14,8 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType } from '@nuxtjs/composition-api'
-import { store } from '@/store/store'
+import { defineComponent, PropType, inject } from '@nuxtjs/composition-api'
+import { StoreInterface } from '@/store/store'
 import Card from './Card.vue'
 import { CardType } from '../types/types'
 
@@ -27,11 +27,8 @@ export default defineComponent({
 		},
 	},
 
-	provide: {
-		store,
-	},
-
 	setup(props) {
+		const store = inject('store') as StoreInterface
 		const cardCount = props.content.length
 		const activeId = store.getActiveCardId()
 		const onActivate = (id: null | number) => {

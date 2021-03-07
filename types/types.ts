@@ -3,3 +3,8 @@ export interface CardType {
 	content: string
 	alt: string
 }
+
+export interface TextType {
+	title: string
+	callToAction: string
+}

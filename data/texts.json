@@ -1,0 +1,26 @@
+[
+	{
+		"title": "Ein Brief",
+		"callToAction": "Schreibe einen Brief"
+	},
+	{
+		"title": "Gedankenkotze",
+		"callToAction": "Kotz dich aus"
+	},
+	{
+		"title": "Eine Fortsetzung",
+		"callToAction": "Schreibe eine Fortsetzung"
+	},
+	{
+		"title": "Ein Gedicht",
+		"callToAction": "Schreibe ein Gedicht"
+	},
+	{
+		"title": "Neue Sachlichkeit",
+		"callToAction": "Schreibe eine Neue Sachlichtkeit"
+	},
+	{
+		"title": "Ein Dialog",
+		"callToAction": "Führe einen Dialog"
+	}
+]
