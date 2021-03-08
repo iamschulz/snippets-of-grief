@@ -50,16 +50,15 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .dice {
-	--diceWidth: 200px;
+	--diceWidth: clamp(9.375rem, 50vw, 12.5rem);
 	width: 0;
 	padding: var(--diceWidth);
-	margin: auto;
 	perspective: 800px;
 	perspective-origin: 0 0;
 
 	&__input {
 		display: none;
-		transform: translateY(-10em);
+		transform: translateY(-10rem);
 	}
 
 	&__object {
@@ -67,6 +66,7 @@ export default defineComponent({
 		--rotateY: 0deg;
 		position: relative;
 		width: var(--diceWidth);
+		margin-left: calc(var(--diceWidth) / -8);
 		transform-style: preserve-3d;
 		transform: translateX(calc(var(--diceWidth) / 2)) rotateX(var(--rotateX)) rotateY(var(--rotateY));
 		transform: translateX(calc(var(--diceWidth) / -2)) rotateX(var(--rotateX)) rotateY(var(--rotateY));
@@ -125,7 +125,7 @@ export default defineComponent({
 		border-radius: 5px;
 		background: #fff;
 		box-shadow: inset 0 0 30px rgba(125, 125, 125, 0.8);
-		font-size: 1.8em;
+		font-size: 1.8rem;
 		text-align: center;
 		color: #000;
 	}

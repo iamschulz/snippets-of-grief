@@ -1,6 +1,6 @@
 <template lang="html">
-	<div>
-		<p>{{ text.callToAction }} über</p>
+	<div class="centered">
+		<h1>{{ text.callToAction }} über</h1>
 		<p>{{ card.content }}</p>
 		<textarea></textarea>
 	</div>

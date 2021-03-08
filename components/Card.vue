@@ -1,9 +1,6 @@
 <template>
-	<article class="card" :data-is-active="isActive()">
-		<div class="card__content">
-			<h2>{{ card.id }}</h2>
-			<img :src="`https://picsum.photos/id/${card.id}/80/80`" alt="card.alt" />
-		</div>
+	<article class="card" :data-is-active="isActive()" :data-landscape="card.landscape">
+		<img class="card__content" :src="`/cards/1920/card${card.id + 1}.jpg`" alt="card.alt" />
 	</article>
 </template>
 
@@ -40,8 +37,8 @@ export default defineComponent({
 	position: relative;
 	display: grid;
 	place-items: center;
-	width: 20ch;
-	height: 15em;
+	width: 11.25rem;
+	height: 18.125rem;
 	border-radius: var(--border-radius);
 	background-color: #eee;
 	transform-style: preserve-3d;
@@ -61,7 +58,9 @@ export default defineComponent({
 		border: 2px solid #888;
 		border-radius: var(--border-radius);
 		background-color: #ddd;
-		background-image: url(https://picsum.photos/180/240);
+		background-image: url('/cardCover-1920.jpg');
+		background-size: cover;
+		background-position: center center;
 		z-index: 2;
 		backface-visibility: hidden;
 		transform: rotateY(180deg);
@@ -73,15 +72,13 @@ export default defineComponent({
 		place-items: center;
 		gap: 1em;
 		text-align: center;
-		padding: 1em 1ch;
 		font-family: sans-serif;
 		color: #333;
 		pointer-events: all;
 		backface-visibility: hidden;
-
-		img {
-			border-radius: 50%;
-		}
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
 	}
 
 	&[data-is-active='true'] {

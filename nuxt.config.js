@@ -8,7 +8,7 @@ export default {
 		meta: [
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
-			{ hid: 'description', name: 'description', content: '' },
+			{ hid: 'description', name: 'description', content: 'Lorem Ipsum' },
 		],
 		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
 	},
@@ -27,6 +27,7 @@ export default {
 		// https://go.nuxtjs.dev/typescript
 		'@nuxt/typescript-build',
 		'@nuxtjs/composition-api',
+		'@nuxtjs/pwa',
 	],
 
 	// Modules: https://go.nuxtjs.dev/config-modules
@@ -35,10 +36,21 @@ export default {
 		'@nuxtjs/pwa',
 	],
 
+	render: {
+		bundleRenderer: {
+			shouldPreload: (file, type) => {
+				return ['script', 'style', 'font'].includes(type)
+			},
+		},
+	},
+
 	// PWA module configuration: https://go.nuxtjs.dev/pwa
 	pwa: {
 		manifest: {
-			lang: 'en',
+			lang: 'de',
+		},
+		meta: {
+			theme_color: '#ffffff',
 		},
 	},
 

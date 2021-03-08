@@ -19,6 +19,8 @@ export default defineComponent({
 @font-face {
 	font-family: 'Accent';
 	src: url('../assets/Pacifico-Regular.woff2') format('woff2');
+	unicode-range: U+0020 —007F;
+	font-display: fallback;
 }
 
 :root {
@@ -27,6 +29,8 @@ export default defineComponent({
 	--accent: #ff9900;
 	--accentGradient: linear-gradient(135deg, #fc7a53 0%, #ff9900 47%, #eef11c 100%);
 	--accentContrast: #222;
+	--font: sans-serif;
+	--accentFont: 'Accent', cursive;
 }
 
 html {
@@ -52,10 +56,11 @@ body {
 	min-height: 80vh;
 	background: var(--background);
 	color: var(--contrast);
-	font-family: sans-serif;
+	font-family: var(--font);
 	padding: 1em;
 	max-width: 60em;
 	margin: auto;
+	font-size: 1.2em;
 }
 
 .centered {
@@ -67,7 +72,7 @@ body {
 }
 
 .cursive {
-	font-family: 'Accent';
+	font-family: var(--accentFont);
 }
 
 .button {
