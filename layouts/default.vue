@@ -24,10 +24,10 @@ export default defineComponent({
 }
 
 :root {
-	--background: #eee;
-	--contrast: #222;
+	--background: rgb(31, 38, 51);
+	--contrast: #eee;
 	--accent: #ff9900;
-	--accentGradient: linear-gradient(135deg, #fc7a53 0%, #ff9900 47%, #eef11c 100%);
+	--accentGradient: linear-gradient(150deg, #fcb353 0%, #ff9900 47%, #f11c86 100%);
 	--accentContrast: #222;
 	--font: sans-serif;
 	--accentFont: 'Accent', cursive;
@@ -79,11 +79,30 @@ body {
 	@extend .cursive;
 	background: var(--accentGradient);
 	background-color: var(--accent);
+	background-position: 100% 100%;
+	background-size: 150%;
 	color: var(--accentContrast);
 	padding: 0.5em 2ch;
 	border-radius: 4px;
 	text-decoration: none;
 	font-size: 1.4em;
+	transition: background-position 0.2s ease-out;
+
+	&:hover {
+		background-position: 0% 0%;
+	}
+}
+
+textarea {
+	background: none;
+	width: clamp(300px, 80vw, 80ch);
+	min-height: 8em;
+	border: 2px solid var(--accent);
+	border-image: var(--accentGradient);
+	border-image-slice: 1;
+	font-size: 1.2rem;
+	color: var(--contrast);
+	padding: 1ch 0.4em;
 }
 
 h1,
@@ -93,5 +112,10 @@ h4,
 h5,
 h6 {
 	@extend .cursive;
+	font-weight: normal;
+	color: var(--accent);
+	background: var(--accentGradient);
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
 }
 </style>

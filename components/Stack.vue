@@ -2,9 +2,9 @@
 	<ul class="stack" :style="`--card-count: ${cardCount}`">
 		<li
 			class="stack__item"
-			v-for="(card, index) in content"
+			v-for="(card, index) in allCards"
 			:key="card.id"
-			:data-is-active="card.id === activeId"
+			:data-is-active="card.id === getActiveId()"
 			:style="`--card-index: ${index}`"
 			@click="() => onActivate(card.id)"
 		>
@@ -19,6 +19,14 @@ import { StoreInterface } from '@/store/store'
 import Card from './Card.vue'
 import { CardType } from '../types/types'
 
+function shuffle(a: any[]) {
+	for (let i = a.length - 1; i > 0; i--) {
+		const j = Math.floor(Math.random() * (i + 1))
+		;[a[i], a[j]] = [a[j], a[i]]
+	}
+	return a
+}
+
 export default defineComponent({
 	props: {
 		content: {
@@ -30,14 +38,17 @@ export default defineComponent({
 	setup(props) {
 		const store = inject('store') as StoreInterface
 		const cardCount = props.content.length
-		const activeId = store.getActiveCardId()
+
+		const allCards = shuffle(props.content)
+		const getActiveId = () => store.getActiveCardId()
 		const onActivate = (id: null | number) => {
 			store.setActiveCardId(id)
 		}
 
 		return {
 			cardCount,
-			activeId,
+			allCards,
+			getActiveId,
 			onActivate,
 		}
 	},
@@ -55,34 +66,23 @@ export default defineComponent({
 	list-style: none;
 	margin-top: 0;
 	padding-bottom: 20em;
+	width: 520px;
 
 	&__item {
-		--active: 0;
-		--width: 1em;
-		--translateY: 0;
-		--rotate: 0deg;
-		--rotate: calc(var(--card-count) * -0.5deg - var(--card-index) * -1deg);
+		cursor: pointer;
+		position: absolute;
+		top: calc(var(--card-index) * 0.25px);
+		left: calc(var(--card-index) * 0.5px);
+		transition: transform 0.4s ease-out;
 
 		&:not([data-is-active='true']):hover {
-			--translateY: -1em;
-
-			&:not(:last-of-type) {
-				--width: 2em;
-			}
+			transform: translate(-0.5ch, -3ch);
 		}
 
 		&[data-is-active='true'] {
-			--active: 1;
-			--rotate: 0;
-			pointer-events: none;
+			transform: translate(140%, -1ch);
 			cursor: initial;
 		}
-
-		width: var(--width);
-		perspective: 800px;
-		transition: transform 0.2s ease-out, width 0.2s ease-out;
-		cursor: pointer;
-		transform: rotate(var(--rotate)) translateY(var(--translateY));
 	}
 }
 </style>

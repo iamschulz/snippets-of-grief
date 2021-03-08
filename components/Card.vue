@@ -1,6 +1,11 @@
 <template>
-	<article class="card" :data-is-active="isActive()" :data-landscape="card.landscape">
-		<img class="card__content" :src="`/cards/1920/card${card.id + 1}.jpg`" alt="card.alt" />
+	<article class="card" :data-id="card.id" :data-is-active="isActive()" :data-landscape="card.landscape">
+		<img
+			class="card__content"
+			:src="isActive() ? `/cards/1920/card${card.id}.jpg` : ''"
+			:data-src="`/cards/1920/card${card.id}.jpg`"
+			alt="card.alt"
+		/>
 	</article>
 </template>
 
@@ -15,12 +20,16 @@ export default defineComponent({
 			type: Object as PropType<CardType>,
 			required: true,
 		},
+		open: {
+			type: Boolean,
+			default: false,
+		},
 	},
 
 	setup(props) {
 		const store = inject('store') as StoreInterface
 		const isActive = (): boolean => {
-			return store.getActiveCardId() === props.card.id
+			return props.open || store.getActiveCardId() === props.card.id
 		}
 
 		return {
@@ -34,6 +43,7 @@ export default defineComponent({
 .card {
 	--active: 0;
 	--border-radius: 5px;
+	--landscape: 0deg;
 	position: relative;
 	display: grid;
 	place-items: center;
@@ -46,7 +56,7 @@ export default defineComponent({
 	transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
 
 	transform: rotateY(calc(180deg + var(--active) * 180deg)) rotateZ(calc(var(--active) * 4deg))
-		translate(calc(var(--active) * 8em), calc(var(--active) * 23em)) scale(calc(1 + var(--active) / 5));
+		rotate(calc(var(--active) * var(--landscape)));
 
 	box-shadow: 0 calc(var(--active) * 0.3em) calc((var(--active) + 0.2) * 1em) 0 rgba(0, 0, 0, 0.5);
 
@@ -79,6 +89,10 @@ export default defineComponent({
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+	}
+
+	&[data-landscape='true'] {
+		--landscape: 90deg;
 	}
 
 	&[data-is-active='true'] {

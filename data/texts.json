@@ -1,26 +1,32 @@
 [
 	{
 		"title": "Ein Brief",
-		"callToAction": "Schreibe einen Brief"
+		"callToAction": "Schreibe einen Brief",
+		"help": "Lorem Ipsum"
 	},
 	{
 		"title": "Gedanken­kotze",
-		"callToAction": "Kotz dich aus"
+		"callToAction": "Kotz dich aus",
+		"help": "Lorem Ipsum"
 	},
 	{
 		"title": "Eine Fortsetzung",
-		"callToAction": "Schreibe eine Fortsetzung"
+		"callToAction": "Schreibe eine Fortsetzung",
+		"help": "Lorem Ipsum"
 	},
 	{
 		"title": "Ein Gedicht",
-		"callToAction": "Schreibe ein Gedicht"
+		"callToAction": "Schreibe ein Gedicht",
+		"help": "Lorem Ipsum"
 	},
 	{
 		"title": "Neue Sachlichkeit",
-		"callToAction": "Schreibe eine Neue Sachlichtkeit"
+		"callToAction": "Schreibe eine Neue Sachlichtkeit",
+		"help": "Lorem Ipsum"
 	},
 	{
 		"title": "Ein Dialog",
-		"callToAction": "Führe einen Dialog"
+		"callToAction": "Führe einen Dialog",
+		"help": "Lorem Ipsum"
 	}
 ]

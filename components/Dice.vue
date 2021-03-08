@@ -53,6 +53,7 @@ export default defineComponent({
 	--diceWidth: clamp(9.375rem, 50vw, 12.5rem);
 	width: 0;
 	padding: var(--diceWidth);
+	padding-left: calc(var(--diceWidth) + 2rem);
 	perspective: 800px;
 	perspective-origin: 0 0;
 
@@ -62,8 +63,8 @@ export default defineComponent({
 	}
 
 	&__object {
-		--rotateX: 0deg;
-		--rotateY: 0deg;
+		--rotateX: -25deg;
+		--rotateY: 300deg;
 		position: relative;
 		width: var(--diceWidth);
 		margin-left: calc(var(--diceWidth) / -8);
