@@ -1,20 +1,18 @@
 <template lang="html">
 	<div class="centered">
 		<h1>{{ text.callToAction }} über…</h1>
-		<Card :card="card" :open="true" />
+		<Card :cardId="card.id" :open="true" />
 		<details>
 			<summary>Du weißt nicht, wie du anfangen sollst?</summary>
 			<p>{{ text.help }}</p>
 		</details>
-		<textarea ref="textAreaEl" @input="resize"></textarea>
+		<textarea ref="textAreaEl" @input="resize" autofocus></textarea>
 
-		<NuxtLink to="/Cards" class="button">Von vorne anfangen?</NuxtLink>
+		<NuxtLink to="/Finish" class="button">Fertig?</NuxtLink>
 	</div>
 </template>
 
 <script lang="ts">
-import cards from '../data/cardsContent.json'
-import texts from '../data/texts.json'
 import { defineComponent, inject, ref } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
 import Card from '@/components/Card.vue'
@@ -22,17 +20,19 @@ import Card from '@/components/Card.vue'
 export default defineComponent({
 	setup() {
 		const store = inject('store') as StoreInterface
+		const cards = store.getCards()
+		const texts = store.getTexts()
 
-		if (store.getActiveCardId === null) {
+		if (store.getActiveCardId() === null) {
 			store.setActiveCardId(0)
 		}
 
-		if (store.getActiveTextId === null) {
+		if (store.getActiveTextId() === null) {
 			store.setActiveTextId(0)
 		}
 
-		const card = cards[store.getActiveCardId() || 0]
-		const text = texts[store.getActiveTextId() || 0]
+		const card = cards[store.getActiveCardId() || 0] // todo: use random item
+		const text = texts[store.getActiveTextId() || 0] // todo: use random item
 
 		const textAreaEl = ref(null)
 		const resize = () => {
@@ -40,7 +40,7 @@ export default defineComponent({
 
 			textArea.style.height = 'auto'
 			window.requestAnimationFrame(() => {
-				textArea.style.height = `${textArea.scrollHeight}px`
+				textArea.style.height = `${textArea.scrollHeight + 4}px`
 			})
 		}
 

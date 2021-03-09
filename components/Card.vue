@@ -10,14 +10,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, PropType } from '@nuxtjs/composition-api'
+import { defineComponent, inject } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
-import { CardType } from '../types/types'
 
 export default defineComponent({
 	props: {
-		card: {
-			type: Object as PropType<CardType>,
+		cardId: {
+			type: Number,
 			required: true,
 		},
 		open: {
@@ -28,11 +27,13 @@ export default defineComponent({
 
 	setup(props) {
 		const store = inject('store') as StoreInterface
+		const card = store.getCardById(props.cardId)
 		const isActive = (): boolean => {
-			return props.open || store.getActiveCardId() === props.card.id
+			return props.open || store.getActiveCardId() === card.id
 		}
 
 		return {
+			card,
 			isActive,
 		}
 	},

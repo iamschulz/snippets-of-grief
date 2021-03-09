@@ -24,11 +24,11 @@ export default defineComponent({
 }
 
 :root {
-	--background: rgb(31, 38, 51);
-	--contrast: #eee;
-	--accent: #ff9900;
-	--accentGradient: linear-gradient(150deg, #fcb353 0%, #ff9900 47%, #f11c86 100%);
-	--accentContrast: #222;
+	--background: rgb(235, 242, 255);
+	--contrast: rgb(24, 24, 24);
+	--accent: #4f6ba7;
+	--accentGradient: linear-gradient(150deg, #4049bb 0%, #4f6ba7 47%, #3da3c2 100%);
+	--accentContrast: #fff;
 	--font: sans-serif;
 	--accentFont: 'Accent', cursive;
 }

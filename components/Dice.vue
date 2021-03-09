@@ -9,20 +9,13 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, inject, ref } from '@nuxtjs/composition-api'
+import { defineComponent, inject, ref } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
-import { TextType } from '@/types/types'
 
 export default defineComponent({
-	props: {
-		content: {
-			type: Array as PropType<TextType[]>,
-			required: true,
-		},
-	},
-
 	setup() {
 		const store = inject('store') as StoreInterface
+		const content = store.getTexts()
 		const diceValue = ref(0)
 		const diceEL = ref(null)
 		const rollDice = () => {
@@ -40,6 +33,7 @@ export default defineComponent({
 		}
 
 		return {
+			content,
 			diceEL,
 			diceValue,
 			rollDice,

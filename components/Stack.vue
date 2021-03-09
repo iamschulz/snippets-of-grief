@@ -2,44 +2,28 @@
 	<ul class="stack" :style="`--card-count: ${cardCount}`">
 		<li
 			class="stack__item"
-			v-for="(card, index) in allCards"
+			v-for="(card, index) in content"
 			:key="card.id"
 			:data-is-active="card.id === getActiveId()"
 			:style="`--card-index: ${index}`"
 			@click="() => onActivate(card.id)"
 		>
-			<Card :card="card" />
+			<Card :cardId="card.id" :key="`${card.id}-${index}`" />
 		</li>
 	</ul>
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, inject } from '@nuxtjs/composition-api'
+import { defineComponent, inject } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
 import Card from './Card.vue'
-import { CardType } from '../types/types'
-
-function shuffle(a: any[]) {
-	for (let i = a.length - 1; i > 0; i--) {
-		const j = Math.floor(Math.random() * (i + 1))
-		;[a[i], a[j]] = [a[j], a[i]]
-	}
-	return a
-}
 
 export default defineComponent({
-	props: {
-		content: {
-			type: Array as PropType<CardType[]>,
-			required: true,
-		},
-	},
-
-	setup(props) {
+	setup() {
 		const store = inject('store') as StoreInterface
-		const cardCount = props.content.length
+		const content = store.getRandomCards()
+		const cardCount = content.length
 
-		const allCards = shuffle(props.content)
 		const getActiveId = () => store.getActiveCardId()
 		const onActivate = (id: null | number) => {
 			store.setActiveCardId(id)
@@ -47,7 +31,7 @@ export default defineComponent({
 
 		return {
 			cardCount,
-			allCards,
+			content,
 			getActiveId,
 			onActivate,
 		}
@@ -61,12 +45,16 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .stack {
+	--activeTransform: translate(0%, 115%);
+	--stackWidth: 200px;
+	--stackHeight: 650px;
 	position: relative;
 	display: flex;
 	list-style: none;
 	margin-top: 0;
 	padding-bottom: 20em;
-	width: 520px;
+	width: var(--stackWidth);
+	height: var(--stackHeight);
 
 	&__item {
 		cursor: pointer;
@@ -80,9 +68,17 @@ export default defineComponent({
 		}
 
 		&[data-is-active='true'] {
-			transform: translate(140%, -1ch);
+			transform: var(--activeTransform);
 			cursor: initial;
 		}
+	}
+}
+
+@media (min-aspect-ratio: 1/1) {
+	.stack {
+		--stackWidth: 520px;
+		--stackHeight: 380px;
+		--activeTransform: translate(160%, -1ch);
 	}
 }
 </style>

@@ -1,26 +1,19 @@
 <template lang="html">
 	<div class="centered">
-		<h1>Zieh eine Karte</h1>
-		<Stack />
-		<NuxtLink to="/dice" v-if="isCardSelected()" class="button">Weiter</NuxtLink>
+		foo
+		<NuxtLink to="/Cards" class="button">Von vorne anfangen?</NuxtLink>
 	</div>
 </template>
 
 <script lang="ts">
-import Stack from '@/components/Stack.vue'
 import { defineComponent, inject } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
 
 export default defineComponent({
 	setup() {
 		const store = inject('store') as StoreInterface
-		const isCardSelected = () => store.getActiveCardId() !== null
-		return {
-			isCardSelected,
-		}
-	},
-	components: {
-		Stack,
+
+		return {}
 	},
 })
 </script>
