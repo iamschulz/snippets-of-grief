@@ -1,6 +1,6 @@
 <template lang="html">
 	<div class="centered">
-		foo
+		{{ userText }}
 		<NuxtLink to="/Cards" class="button">Von vorne anfangen?</NuxtLink>
 	</div>
 </template>
@@ -12,8 +12,11 @@ import { StoreInterface } from '@/store/store'
 export default defineComponent({
 	setup() {
 		const store = inject('store') as StoreInterface
+		const userText = store.getUserText()
 
-		return {}
+		return {
+			userText,
+		}
 	},
 })
 </script>

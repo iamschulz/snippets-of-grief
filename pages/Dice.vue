@@ -14,6 +14,7 @@ import { StoreInterface } from '@/store/store'
 export default defineComponent({
 	setup() {
 		const store = inject('store') as StoreInterface
+		store.setUserText(null)
 		const isTextSelected = () => store.getActiveTextId() !== null
 
 		if (store.getActiveCardId === null) {

@@ -8,7 +8,7 @@
 			:style="`--card-index: ${index}`"
 			@click="() => onActivate(card.id)"
 		>
-			<Card :cardId="card.id" :key="`${card.id}-${index}`" />
+			<Card :cardId="card.id" :index="index" />
 		</li>
 	</ul>
 </template>
@@ -78,7 +78,7 @@ export default defineComponent({
 	.stack {
 		--stackWidth: 520px;
 		--stackHeight: 380px;
-		--activeTransform: translate(160%, -1ch);
+		--activeTransform: translate(160%, 1em);
 	}
 }
 </style>

@@ -84,6 +84,7 @@ body {
 	color: var(--accentContrast);
 	padding: 0.5em 2ch;
 	border-radius: 4px;
+	text-align: center;
 	text-decoration: none;
 	font-size: 1.4em;
 	transition: background-position 0.2s ease-out;

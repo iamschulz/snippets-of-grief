@@ -1,5 +1,11 @@
 <template>
-	<article class="card" :data-id="card.id" :data-is-active="isActive()" :data-landscape="card.landscape">
+	<article
+		class="card"
+		:data-id="card.id"
+		:data-index="index"
+		:data-is-active="isActive()"
+		:data-landscape="card.landscape"
+	>
 		<img
 			class="card__content"
 			:src="isActive() ? `/cards/1920/card${card.id}.jpg` : ''"
@@ -10,7 +16,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from '@nuxtjs/composition-api'
+import { defineComponent, inject, computed, onMounted, ref } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
 
 export default defineComponent({
@@ -18,6 +24,9 @@ export default defineComponent({
 		cardId: {
 			type: Number,
 			required: true,
+		},
+		index: {
+			type: Number,
 		},
 		open: {
 			type: Boolean,
@@ -27,10 +36,17 @@ export default defineComponent({
 
 	setup(props) {
 		const store = inject('store') as StoreInterface
-		const card = store.getCardById(props.cardId)
+		const id = ref(1)
+		let card = computed(() => store.getCardById(id.value))
 		const isActive = (): boolean => {
-			return props.open || store.getActiveCardId() === card.id
+			return props.open || store.getActiveCardId() === card.value.id
 		}
+
+		onMounted(() => {
+			if (process.browser) {
+				id.value = props.cardId
+			}
+		})
 
 		return {
 			card,
@@ -52,14 +68,13 @@ export default defineComponent({
 	height: 18.125rem;
 	border-radius: var(--border-radius);
 	background-color: #eee;
+	box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.14), 0 3px 5px 0 rgba(0, 0, 0, 0.12), 0 1.5px 4px 1.5px rgba(0, 0, 0, 0.2);
 	transform-style: preserve-3d;
 	backface-visibility: hidden;
 	transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
 
 	transform: rotateY(calc(180deg + var(--active) * 180deg)) rotateZ(calc(var(--active) * 4deg))
 		rotate(calc(var(--active) * var(--landscape)));
-
-	box-shadow: 0 calc(var(--active) * 0.3em) calc((var(--active) + 0.2) * 1em) 0 rgba(0, 0, 0, 0.5);
 
 	&::before {
 		content: '';

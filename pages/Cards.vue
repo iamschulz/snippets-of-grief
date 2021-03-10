@@ -14,6 +14,10 @@ import { StoreInterface } from '@/store/store'
 export default defineComponent({
 	setup() {
 		const store = inject('store') as StoreInterface
+		store.shuffleCards()
+		store.setActiveCardId(null)
+		store.setActiveTextId(null)
+		store.setUserText(null)
 		const isCardSelected = () => store.getActiveCardId() !== null
 		return {
 			isCardSelected,

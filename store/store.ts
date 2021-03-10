@@ -23,6 +23,7 @@ export interface StoreData {
 	texts: Text[]
 	activeCardId: null | number
 	activeTextId: null | number
+	userText: string
 	randomIds: number[]
 }
 
@@ -31,11 +32,14 @@ export interface StoreInterface {
 	getCardById: Function
 	getRandomIds: Function
 	getRandomCards: Function
+	shuffleCards: Function
 	getActiveCardId: Function
 	setActiveCardId: Function
 	getTexts: Function
 	getActiveTextId: Function
 	setActiveTextId: Function
+	getUserText: Function
+	setUserText: Function
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -45,18 +49,35 @@ export class Store {
 	constructor(readonly storeName: string) {
 		const data = this.data()
 		this.state = reactive(data)
-		this.state.randomIds = this.shuffle(this.state.cards.map((x) => x.id))
 	}
 
 	//protected abstract data(): T;
 	protected data(): StoreData {
+		const sessionStorage = process.browser
+			? window.sessionStorage
+			: {
+					getItem(): string {
+						return ''
+					},
+			  }
+
+		const userText = sessionStorage.getItem('userText')
+
 		return {
 			cards,
 			texts,
-			activeCardId: null,
-			activeTextId: null,
-			randomIds: [],
+			activeCardId: Number(sessionStorage.getItem('activeCardId')) || null,
+			activeTextId: Number(sessionStorage.getItem('activeTextId')) || null,
+			userText: !userText || userText === 'null' ? '' : userText,
+			randomIds: this.shuffle(cards.map((x) => x.id)),
 		}
+	}
+
+	protected persist(key: 'activeCardId' | 'activeTextId' | 'userText'): void {
+		if (!process.browser) {
+			return
+		}
+		sessionStorage.setItem(key, String(this.state[key]))
 	}
 
 	protected shuffle = (a: any[]) => {
@@ -69,6 +90,10 @@ export class Store {
 
 	public getCards(): Card[] {
 		return this.state.cards
+	}
+
+	public shuffleCards(): void {
+		this.state.randomIds = this.shuffle(this.state.cards.map((x) => x.id))
 	}
 
 	public getRandomIds(): number[] {
@@ -89,6 +114,7 @@ export class Store {
 
 	public setActiveCardId(id: number): void {
 		this.state.activeCardId = id
+		this.persist('activeCardId')
 	}
 
 	public getTexts(): Text[] {
@@ -101,6 +127,16 @@ export class Store {
 
 	public setActiveTextId(id: number): void {
 		this.state.activeTextId = id
+		this.persist('activeTextId')
+	}
+
+	public getUserText(): string {
+		return this.state.userText
+	}
+
+	public setUserText(content: string): void {
+		this.state.userText = content
+		this.persist('userText')
 	}
 }
 
