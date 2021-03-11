@@ -25,7 +25,7 @@ export default defineComponent({
 
 :root {
 	--background: rgb(235, 242, 255);
-	--contrast: rgb(24, 24, 24);
+	--contrast: rgb(48, 48, 48);
 	--accent: #a75c4f;
 	--accentGradient: linear-gradient(150deg, rgb(182, 130, 120) 0%, #be7366 47%, #a81e3c 100%);
 	--accentContrast: #fff;
@@ -49,7 +49,6 @@ html {
 *::before,
 *::after {
 	box-sizing: border-box;
-	margin: 0;
 }
 
 body {
@@ -69,6 +68,10 @@ body {
 	justify-content: center;
 	align-items: center;
 	gap: 1em;
+
+	> * + * {
+		margin: 0;
+	}
 }
 
 .cursive {
@@ -118,6 +121,11 @@ h6 {
 	background: var(--accentGradient);
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
+	padding: 0 0.5ch;
+}
+
+.small {
+	font-size: 0.8em;
 }
 
 .pop-in-enter-active,

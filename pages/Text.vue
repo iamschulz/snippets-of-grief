@@ -4,7 +4,7 @@
 		<Card :cardId="card.id" :index="card.id" :open="true" />
 		<details>
 			<summary>Du weißt nicht, wie du anfangen sollst?</summary>
-			<p>{{ text.help }}</p>
+			<div v-html="helpText"></div>
 		</details>
 		<textarea ref="textAreaEl" @input="resize" v-model="userText" autofocus></textarea>
 
@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, ref, watch } from '@nuxtjs/composition-api'
+import { computed, defineComponent, inject, ref, watch } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
 import Card from '@/components/Card.vue'
 
@@ -43,6 +43,8 @@ export default defineComponent({
 		const card = cards[store.getActiveCardId() - 1 || 0] // todo: use random item
 		const text = texts[store.getActiveTextId() || 0] // todo: use random item
 
+		const helpText = computed(() => '<p>' + text.help.replace(/(?:\r\n|\r|\n)/g, '</p><p>') + '</p>')
+
 		const textAreaEl = ref(null)
 		const resize = () => {
 			const textArea = (textAreaEl.value as unknown) as HTMLTextAreaElement
@@ -56,6 +58,7 @@ export default defineComponent({
 		return {
 			card,
 			text,
+			helpText,
 			userText,
 			textAreaEl,
 			resize,
