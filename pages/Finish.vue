@@ -18,6 +18,11 @@ export default defineComponent({
 			userText,
 		}
 	},
+
+	transition: {
+		name: 'page-fade',
+		mode: 'in-out',
+	},
 })
 </script>
 

@@ -2,7 +2,9 @@
 	<div class="centered">
 		<h1>Würfel eine Textart</h1>
 		<Dice />
-		<NuxtLink to="/Text" v-if="isTextSelected()" class="button">Weiter</NuxtLink>
+		<transition name="pop-in">
+			<NuxtLink to="/Text" v-if="isTextSelected()" class="button">Weiter</NuxtLink>
+		</transition>
 	</div>
 </template>
 
@@ -27,6 +29,11 @@ export default defineComponent({
 	},
 	components: {
 		Dice,
+	},
+
+	transition: {
+		name: 'page-fade',
+		mode: 'in-out',
 	},
 })
 </script>

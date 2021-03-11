@@ -26,8 +26,8 @@ export default defineComponent({
 :root {
 	--background: rgb(235, 242, 255);
 	--contrast: rgb(24, 24, 24);
-	--accent: #4f6ba7;
-	--accentGradient: linear-gradient(150deg, #4049bb 0%, #4f6ba7 47%, #3da3c2 100%);
+	--accent: #a75c4f;
+	--accentGradient: linear-gradient(150deg, rgb(182, 130, 120) 0%, #be7366 47%, #a81e3c 100%);
 	--accentContrast: #fff;
 	--font: sans-serif;
 	--accentFont: 'Accent', cursive;
@@ -119,4 +119,31 @@ h6 {
 	-webkit-background-clip: text;
 	-webkit-text-fill-color: transparent;
 }
+
+.pop-in-enter-active,
+.pop-in-leave-active {
+	transform: scale(1) rotate(0);
+	opacity: 1;
+	transition: transform 0.2s cubic-bezier(0.25, 0.47, 0.6, 1.35), opacity 0.1s ease-out;
+}
+.pop-in-enter, .pop-in-leave-to /* .fade-leave-active below version 2.1.8 */ {
+	transform: scale(0) rotate(8deg);
+	opacity: 0;
+	transition: transform 0.2s ease-out, opacity 0.1s ease-out;
+}
+
+/*
+.page-fade-enter-active,
+.page-fade-leave-active {
+	transform: translateX(0);
+	transition: transform 0.2s ease-out;
+}
+.page-fade-enter-active {
+	transform: translateX(50vw);
+}
+
+.page-fade-leave-to {
+	transform: translateX(-50vw);
+}
+*/
 </style>

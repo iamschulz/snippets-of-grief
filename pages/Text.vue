@@ -8,12 +8,14 @@
 		</details>
 		<textarea ref="textAreaEl" @input="resize" v-model="userText" autofocus></textarea>
 
-		<NuxtLink to="/Finish" class="button">Fertig?</NuxtLink>
+		<transition name="pop-in">
+			<NuxtLink v-if="isReady" to="/Finish" class="button">Fertig?</NuxtLink>
+		</transition>
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, ref, watch, onMounted } from '@nuxtjs/composition-api'
+import { defineComponent, inject, ref, watch } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
 import Card from '@/components/Card.vue'
 
@@ -22,10 +24,12 @@ export default defineComponent({
 		const store = inject('store') as StoreInterface
 		const cards = store.getCards()
 		const texts = store.getTexts()
+		const isReady = ref(false)
 		const userText = ref(store.getUserText())
 
 		watch(userText, (input: String) => {
 			store.setUserText(input)
+			isReady.value = input.length > 0
 		})
 
 		if (store.getActiveCardId() === null) {
@@ -55,11 +59,17 @@ export default defineComponent({
 			userText,
 			textAreaEl,
 			resize,
+			isReady,
 		}
 	},
 
 	components: {
 		Card,
+	},
+
+	transition: {
+		name: 'page-fade',
+		mode: 'in-out',
 	},
 })
 </script>

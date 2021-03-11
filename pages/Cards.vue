@@ -2,7 +2,9 @@
 	<div class="centered">
 		<h1>Zieh eine Karte</h1>
 		<Stack />
-		<NuxtLink to="/dice" v-if="isCardSelected()" class="button">Weiter</NuxtLink>
+		<transition name="pop-in">
+			<NuxtLink to="/dice" v-if="isCardSelected()" class="button">Weiter</NuxtLink>
+		</transition>
 	</div>
 </template>
 
@@ -25,6 +27,10 @@ export default defineComponent({
 	},
 	components: {
 		Stack,
+	},
+	transition: {
+		name: 'page-fade',
+		mode: 'in-out',
 	},
 })
 </script>

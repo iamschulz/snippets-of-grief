@@ -8,7 +8,7 @@
 	>
 		<img
 			class="card__content"
-			:src="isActive() ? `/cards/1920/card${card.id}.jpg` : ''"
+			:src="isActive() ? `/cards/1920/card${card.id}.jpg` : '#'"
 			:data-src="`/cards/1920/card${card.id}.jpg`"
 			alt="card.alt"
 		/>
@@ -105,6 +105,13 @@ export default defineComponent({
 		width: 100%;
 		height: 100%;
 		object-fit: cover;
+		transition: opacity 0.5s ease-out;
+
+		&[src=''],
+		&[src='#'],
+		&:not([src]) {
+			opacity: 0;
+		}
 	}
 
 	&[data-landscape='true'] {
