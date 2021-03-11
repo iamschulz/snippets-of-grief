@@ -1,4 +1,4 @@
-# cards
+# Snippets of Grief
 
 ## Build Setup
 
