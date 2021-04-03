@@ -26,11 +26,11 @@ export default defineComponent({
 :root {
 	--background: rgb(235, 242, 255);
 	--contrast: rgb(48, 48, 48);
-	--accent: #a75c4f;
-	--accentGradient: linear-gradient(150deg, rgb(182, 130, 120) 0%, #be7366 47%, #a81e3c 100%);
-	--accentContrast: #fff;
+	--accent-red: #cc9aa2;
+	--accent-blue: #93a5d1;
+	--accent-redContrast: #fff;
 	--font: sans-serif;
-	--accentFont: 'Accent', cursive;
+	--accent-redFont: 'Accent', cursive;
 }
 
 html {
@@ -56,7 +56,6 @@ body {
 	background: var(--background);
 	color: var(--contrast);
 	font-family: var(--font);
-	padding: 1em;
 	max-width: 60em;
 	margin: auto;
 	font-size: 1.2em;
@@ -75,16 +74,15 @@ body {
 }
 
 .cursive {
-	font-family: var(--accentFont);
+	font-family: var(--accent-redFont);
 }
 
 .button {
 	@extend .cursive;
-	background: var(--accentGradient);
-	background-color: var(--accent);
+	background-color: var(--accent-red);
 	background-position: 100% 100%;
 	background-size: 150%;
-	color: var(--accentContrast);
+	color: var(--accent-redContrast);
 	padding: 0.5em 2ch;
 	border-radius: 4px;
 	text-align: center;
@@ -101,8 +99,7 @@ textarea {
 	background: none;
 	width: clamp(300px, 80vw, 80ch);
 	min-height: 8em;
-	border: 2px solid var(--accent);
-	border-image: var(--accentGradient);
+	border: 2px solid var(--accent-red);
 	border-image-slice: 1;
 	font-size: 1.2rem;
 	color: var(--contrast);
@@ -117,10 +114,6 @@ h5,
 h6 {
 	@extend .cursive;
 	font-weight: normal;
-	color: var(--accent);
-	background: var(--accentGradient);
-	-webkit-background-clip: text;
-	-webkit-text-fill-color: transparent;
 	padding: 0 0.5ch;
 }
 
@@ -140,7 +133,6 @@ h6 {
 	transition: transform 0.2s ease-out, opacity 0.1s ease-out;
 }
 
-/*
 .page-fade-enter-active,
 .page-fade-leave-active {
 	transform: translateX(0);
@@ -153,5 +145,4 @@ h6 {
 .page-fade-leave-to {
 	transform: translateX(-50vw);
 }
-*/
 </style>
