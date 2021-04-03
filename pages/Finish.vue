@@ -1,7 +1,12 @@
 <template lang="html">
-	<div class="centered">
-		{{ userText }}
-		<NuxtLink to="/Cards" class="button">Von vorne anfangen?</NuxtLink>
+	<div>
+		<Header color="blue">
+			<template v-slot:title>Finish</template>
+		</Header>
+		<div class="centered">
+			{{ userText }}
+			<NuxtLink to="/Cards" class="button">Von vorne anfangen?</NuxtLink>
+		</div>
 	</div>
 </template>
 
@@ -17,11 +22,6 @@ export default defineComponent({
 		return {
 			userText,
 		}
-	},
-
-	transition: {
-		name: 'page-fade',
-		mode: 'in-out',
 	},
 })
 </script>

@@ -1,10 +1,14 @@
 <template lang="html">
-	<div class="centered">
-		<h1>Würfel eine Textart</h1>
-		<Dice />
-		<transition name="pop-in">
-			<NuxtLink to="/Text" v-if="isTextSelected()" class="button">Weiter</NuxtLink>
-		</transition>
+	<div>
+		<Header color="blue">
+			<template v-slot:title>Würfel eine Textart</template>
+		</Header>
+		<div class="centered">
+			<Dice />
+			<transition name="pop-in">
+				<NuxtLink to="/Text" v-if="isTextSelected()" class="button">Weiter</NuxtLink>
+			</transition>
+		</div>
 	</div>
 </template>
 
@@ -29,11 +33,6 @@ export default defineComponent({
 	},
 	components: {
 		Dice,
-	},
-
-	transition: {
-		name: 'page-fade',
-		mode: 'in-out',
 	},
 })
 </script>

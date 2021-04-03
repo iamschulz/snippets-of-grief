@@ -73,8 +73,10 @@ export default defineComponent({
 	backface-visibility: hidden;
 	transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
 
-	transform: rotateY(calc(180deg + var(--active) * 180deg)) rotateZ(calc(var(--active) * 4deg))
-		rotate(calc(var(--active) * var(--landscape)));
+	--rotateY: calc(180deg + var(--active) * 180deg);
+	--rotateZ: calc(var(--active) * 4deg + (1 - var(--active)) * 90deg);
+	--rotate: calc(var(--active) * var(--landscape));
+	transform: rotateY(var(--rotateY)) rotateZ(var(--rotateZ)) rotate(var(--rotate));
 
 	&::before {
 		content: '';

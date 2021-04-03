@@ -45,14 +45,13 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .stack {
-	--activeTransform: translate(0%, 115%);
-	--stackWidth: 200px;
-	--stackHeight: 650px;
+	--activeTransform: translate(0%, 140%);
+	--stackWidth: 320px;
+	--stackHeight: 490px;
 	position: relative;
 	display: flex;
 	list-style: none;
-	margin-top: 0;
-	padding-bottom: 20em;
+	margin-top: 55px;
 	width: var(--stackWidth);
 	height: var(--stackHeight);
 
@@ -62,6 +61,8 @@ export default defineComponent({
 		top: calc(var(--card-index) * 0.25px);
 		left: calc(var(--card-index) * 0.5px);
 		transition: transform 0.4s ease-out;
+		height: 11.25rem;
+		width: 18.125rem;
 
 		&:not([data-is-active='true']):hover {
 			transform: translate(-0.5ch, -3ch);
@@ -70,15 +71,21 @@ export default defineComponent({
 		&[data-is-active='true'] {
 			transform: var(--activeTransform);
 			cursor: initial;
+			z-index: 999;
+		}
+
+		> * {
+			top: -55px;
+			left: 55px;
 		}
 	}
 }
 
-@media (min-aspect-ratio: 1/1) {
+@media (min-aspect-ratio: 10/7) {
 	.stack {
 		--stackWidth: 520px;
-		--stackHeight: 380px;
-		--activeTransform: translate(160%, 1em);
+		--stackHeight: 220px;
+		--activeTransform: translate(110%, 1em);
 	}
 }
 </style>

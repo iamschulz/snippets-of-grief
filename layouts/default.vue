@@ -132,17 +132,4 @@ h6 {
 	opacity: 0;
 	transition: transform 0.2s ease-out, opacity 0.1s ease-out;
 }
-
-.page-fade-enter-active,
-.page-fade-leave-active {
-	transform: translateX(0);
-	transition: transform 0.2s ease-out;
-}
-.page-fade-enter-active {
-	transform: translateX(50vw);
-}
-
-.page-fade-leave-to {
-	transform: translateX(-50vw);
-}
 </style>

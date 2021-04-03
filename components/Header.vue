@@ -22,6 +22,7 @@ export default {
 	display: grid;
 	place-items: center;
 	width: 100%;
+	margin-bottom: 1rem;
 
 	&__title {
 		font-size: 1.5rem;

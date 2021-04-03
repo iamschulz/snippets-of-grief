@@ -1,16 +1,21 @@
 <template lang="html">
-	<div class="centered">
-		<h1>{{ text.callToAction }} über…</h1>
-		<Card :cardId="card.id" :index="card.id" :open="true" />
-		<details>
-			<summary>Du weißt nicht, wie du anfangen sollst?</summary>
-			<div v-html="helpText"></div>
-		</details>
-		<textarea ref="textAreaEl" @input="resize" v-model="userText" autofocus></textarea>
+	<div>
+		<Header color="blue">
+			<template v-slot:title>Drauf losschreiben</template>
+		</Header>
+		<div class="centered">
+			<h1>{{ text.callToAction }} über…</h1>
+			<Card :cardId="card.id" :index="card.id" :open="true" />
+			<details>
+				<summary>Du weißt nicht, wie du anfangen sollst?</summary>
+				<div v-html="helpText"></div>
+			</details>
+			<textarea ref="textAreaEl" @input="resize" v-model="userText" autofocus></textarea>
 
-		<transition name="pop-in">
-			<NuxtLink v-if="isReady" to="/Finish" class="button">Fertig?</NuxtLink>
-		</transition>
+			<transition name="pop-in">
+				<NuxtLink v-if="isReady" to="/Finish" class="button">Fertig?</NuxtLink>
+			</transition>
+		</div>
 	</div>
 </template>
 
@@ -68,11 +73,6 @@ export default defineComponent({
 
 	components: {
 		Card,
-	},
-
-	transition: {
-		name: 'page-fade',
-		mode: 'in-out',
 	},
 })
 </script>
