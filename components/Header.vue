@@ -18,6 +18,9 @@ export default {
 
 <style lang="scss" scoped>
 .header {
+	position: sticky;
+	top: 0;
+	z-index: 100;
 	background-color: var(--header-bg);
 	display: grid;
 	place-items: center;

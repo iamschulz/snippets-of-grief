@@ -51,7 +51,6 @@ export default defineComponent({
 	position: relative;
 	display: flex;
 	list-style: none;
-	margin-top: 55px;
 	width: var(--stackWidth);
 	height: var(--stackHeight);
 
