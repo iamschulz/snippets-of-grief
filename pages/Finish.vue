@@ -3,7 +3,7 @@
 		<Header color="blue">
 			<template v-slot:title>Finish</template>
 		</Header>
-		<div class="centered">
+		<div class="root">
 			{{ userText }}
 			<NuxtLink to="/Cards" class="button">Von vorne anfangen?</NuxtLink>
 		</div>

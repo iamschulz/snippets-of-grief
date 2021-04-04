@@ -47,6 +47,7 @@ export default defineComponent({
 	--diceWidth: clamp(9.375rem, 50vw, 12.5rem);
 	width: 0;
 	padding: var(--diceWidth);
+	padding-top: calc(var(--diceWidth) - 3rem);
 	padding-left: calc(var(--diceWidth) + 2rem);
 	perspective: 800px;
 	perspective-origin: 0 0;

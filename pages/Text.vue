@@ -3,14 +3,14 @@
 		<Header color="blue">
 			<template v-slot:title>Drauf losschreiben</template>
 		</Header>
-		<div class="centered">
+		<div class="root">
 			<h1>{{ text.callToAction }} über…</h1>
 			<Card :cardId="card.id" :index="card.id" :open="true" />
-			<details>
+			<details class="content">
 				<summary>Du weißt nicht, wie du anfangen sollst?</summary>
 				<div v-html="helpText"></div>
 			</details>
-			<textarea ref="textAreaEl" @input="resize" v-model="userText" autofocus></textarea>
+			<textarea class="content" ref="textAreaEl" @input="resize" v-model="userText" autofocus></textarea>
 
 			<transition name="pop-in">
 				<NuxtLink v-if="isReady" to="/Finish" class="button">Fertig?</NuxtLink>

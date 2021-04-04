@@ -56,21 +56,28 @@ body {
 	background: var(--background);
 	color: var(--contrast);
 	font-family: var(--font);
-	max-width: 60em;
 	margin: auto;
-	font-size: 1.2em;
+	font-size: 1.2rem;
+	padding-bottom: 1rem;
 }
 
-.centered {
+.root {
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
 	gap: 1em;
+	padding: 0 1rem;
 
 	> * + * {
 		margin: 0;
 	}
+}
+
+.content {
+	display: block;
+	width: clamp(300px, 80vw, 50ch);
+	margin: auto;
 }
 
 .cursive {
@@ -97,13 +104,13 @@ body {
 
 textarea {
 	background: none;
-	width: clamp(300px, 80vw, 80ch);
 	min-height: 8em;
 	border: 2px solid var(--accent-red);
 	border-image-slice: 1;
 	font-size: 1.2rem;
 	color: var(--contrast);
 	padding: 1ch 0.4em;
+	font-family: sans-serif;
 }
 
 h1,
@@ -127,7 +134,8 @@ h6 {
 	opacity: 1;
 	transition: transform 0.2s cubic-bezier(0.25, 0.47, 0.6, 1.35), opacity 0.1s ease-out;
 }
-.pop-in-enter, .pop-in-leave-to /* .fade-leave-active below version 2.1.8 */ {
+.pop-in-enter,
+.pop-in-leave-to {
 	transform: scale(0) rotate(8deg);
 	opacity: 0;
 	transition: transform 0.2s ease-out, opacity 0.1s ease-out;

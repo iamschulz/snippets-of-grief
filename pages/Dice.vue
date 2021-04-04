@@ -3,7 +3,7 @@
 		<Header color="blue">
 			<template v-slot:title>Würfel eine Textart</template>
 		</Header>
-		<div class="centered">
+		<div class="root">
 			<Dice />
 			<transition name="pop-in">
 				<NuxtLink to="/Text" v-if="isTextSelected()" class="button">Weiter</NuxtLink>

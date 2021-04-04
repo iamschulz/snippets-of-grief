@@ -3,7 +3,7 @@
 		<Header color="blue">
 			<template v-slot:title>Zieh eine Karte</template>
 		</Header>
-		<div class="centered">
+		<div class="root">
 			<Stack />
 			<transition name="pop-in">
 				<NuxtLink to="/dice" v-if="isCardSelected()" class="button">Weiter</NuxtLink>
