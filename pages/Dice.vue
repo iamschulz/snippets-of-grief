@@ -2,6 +2,7 @@
 	<div>
 		<Header color="blue">
 			<template v-slot:title>Würfel eine Textart</template>
+			<template v-slot:icon><DiceIcon /></template>
 		</Header>
 		<div class="root">
 			<Dice />
@@ -14,6 +15,7 @@
 
 <script lang="ts">
 import Dice from '../components/Dice.vue'
+import DiceIcon from '@/assets/DiceIcon.svg?inline'
 import { defineComponent, inject } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
 
@@ -33,6 +35,7 @@ export default defineComponent({
 	},
 	components: {
 		Dice,
+		DiceIcon,
 	},
 })
 </script>

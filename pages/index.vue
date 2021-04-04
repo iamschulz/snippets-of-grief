@@ -2,6 +2,7 @@
 	<div>
 		<Header color="blue">
 			<template v-slot:title> So funktioniert's </template>
+			<template v-slot:icon><PenIcon /></template>
 		</Header>
 		<div class="root">
 			<NuxtLink to="/Cards" class="button">Schreibritual starten</NuxtLink>

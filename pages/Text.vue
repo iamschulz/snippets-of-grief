@@ -2,6 +2,7 @@
 	<div>
 		<Header color="blue">
 			<template v-slot:title>Drauf losschreiben</template>
+			<template v-slot:icon><PenIcon /></template>
 		</Header>
 		<div class="root">
 			<h1>{{ text.callToAction }} über…</h1>
@@ -23,6 +24,7 @@
 import { computed, defineComponent, inject, ref, watch } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
 import Card from '@/components/Card.vue'
+import PenIcon from '@/assets/PenIcon.svg?inline'
 
 export default defineComponent({
 	setup() {
@@ -73,6 +75,7 @@ export default defineComponent({
 
 	components: {
 		Card,
+		PenIcon,
 	},
 })
 </script>

@@ -2,6 +2,7 @@
 	<div>
 		<Header color="blue">
 			<template v-slot:title>Zieh eine Karte</template>
+			<template v-slot:icon><CardsIcon /></template>
 		</Header>
 		<div class="root">
 			<Stack />
@@ -14,6 +15,7 @@
 
 <script lang="ts">
 import Stack from '@/components/Stack.vue'
+import CardsIcon from '@/assets/CardsIcon.svg?inline'
 import { defineComponent, inject } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
 
@@ -31,6 +33,7 @@ export default defineComponent({
 	},
 	components: {
 		Stack,
+		CardsIcon,
 	},
 })
 </script>

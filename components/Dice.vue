@@ -45,6 +45,17 @@ export default defineComponent({
 <style lang="scss" scoped>
 .dice {
 	--diceWidth: clamp(9.375rem, 50vw, 12.5rem);
+
+	&::before {
+		content: '';
+		display: block;
+		position: absolute;
+		width: 0px;
+		height: 0px;
+		box-shadow: 0 0 175px 160px rgba(0, 0, 0, 0.4);
+		transform: translate3D(10px, 100px, 40px) rotateX(90deg);
+	}
+
 	width: 0;
 	padding: var(--diceWidth);
 	padding-top: calc(var(--diceWidth) - 3rem);
