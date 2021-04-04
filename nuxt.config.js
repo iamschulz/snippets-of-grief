@@ -28,6 +28,7 @@ export default {
 		'@nuxt/typescript-build',
 		'@nuxtjs/composition-api',
 		'@nuxtjs/pwa',
+		'@nuxtjs/svg',
 	],
 
 	// Modules: https://go.nuxtjs.dev/config-modules

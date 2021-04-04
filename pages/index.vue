@@ -35,10 +35,12 @@
 </template>
 
 <script>
-import Header from '../components/Header.vue'
+import Header from '@/components/Header.vue'
+import PenIcon from '@/assets/PenIcon.svg?inline'
 export default {
 	components: {
 		Header,
+		PenIcon,
 	},
 }
 </script>
