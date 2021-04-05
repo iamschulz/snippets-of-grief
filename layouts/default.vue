@@ -47,6 +47,9 @@ $shadowColor: #000;
 	--accent-redContrast: #fff;
 	--font: sans-serif;
 	--accent-redFont: 'Accent', cursive;
+
+	--cardWidth: 11.25rem;
+	--cardHeight: 18.125rem;
 }
 
 html {

@@ -1,5 +1,6 @@
 <template>
 	<ul class="stack" :style="`--card-count: ${cardCount}`">
+		<div class="stack__shadow elevation-2"></div>
 		<li
 			class="stack__item"
 			v-for="(card, index) in content"
@@ -53,6 +54,16 @@ export default defineComponent({
 	list-style: none;
 	width: var(--stackWidth);
 	height: var(--stackHeight);
+
+	&__shadow {
+		position: absolute;
+		width: var(--cardWidth);
+		height: var(--cardHeight);
+		transform: rotate(90deg);
+		top: -3.4375rem;
+		left: 3.4375rem;
+		border-radius: 5px;
+	}
 
 	&__item {
 		cursor: pointer;

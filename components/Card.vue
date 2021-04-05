@@ -64,8 +64,8 @@ export default defineComponent({
 	position: relative;
 	display: grid;
 	place-items: center;
-	width: 11.25rem;
-	height: 18.125rem;
+	width: var(--cardWidth);
+	height: var(--cardHeight);
 	border-radius: var(--border-radius);
 	background-color: #eee;
 	transform-style: preserve-3d;
