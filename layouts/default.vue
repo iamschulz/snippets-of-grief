@@ -107,7 +107,7 @@ body {
 	background-image: var(--accent-gradient);
 	background-position: 100% 100%;
 	background-size: 150%;
-	color: var(--accent-redContrast);
+	color: var(--contrast);
 	padding: 0.5em 2ch;
 	border-radius: 4px;
 	text-align: center;

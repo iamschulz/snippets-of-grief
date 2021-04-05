@@ -14,7 +14,7 @@
 	position: sticky;
 	top: 0;
 	z-index: 100;
-	background-color: var(--header-bg);
+	background-color: var(--accent-blue);
 	background-image: var(--accent-gradient);
 	display: flex;
 	align-items: center;
@@ -46,7 +46,7 @@
 	&__title {
 		font-size: 1.5rem;
 		margin: 0.1em;
-		color: white;
+		color: var(--contrast);
 	}
 }
 </style>
