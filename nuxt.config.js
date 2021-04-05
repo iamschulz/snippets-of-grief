@@ -11,7 +11,7 @@ export default {
 			{ hid: 'description', name: 'description', content: 'Lorem Ipsum' },
 			{ name: 'theme-color', content: '#93a5d1' },
 		],
-		link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+		link: [{ rel: 'icon', type: 'image/x-icon', href: '/assets/AppIcon.svg' }],
 	},
 
 	// Global CSS: https://go.nuxtjs.dev/config-css
@@ -49,10 +49,16 @@ export default {
 	// PWA module configuration: https://go.nuxtjs.dev/pwa
 	pwa: {
 		manifest: {
+			name: 'Snippets of Grief',
 			lang: 'de',
+			background_color: '#93a5d1',
+			theme_color: '#93a5d1',
+			icon: {
+				source: 'assets/AppIcon-512.png',
+			},
 		},
 		meta: {
-			theme_color: '#ffffff',
+			theme_color: '#93a5d1',
 		},
 	},
 
