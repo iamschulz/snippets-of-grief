@@ -1,16 +1,21 @@
 <template>
-	<div>
+	<div class="wrapper">
 		<Nuxt />
+		<Footer />
 	</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
 import { store } from '@/store/store'
+import Footer from '@/components/Footer.vue'
 
 export default defineComponent({
 	provide: {
 		store,
+	},
+	components: {
+		Footer,
 	},
 })
 </script>
@@ -62,6 +67,10 @@ html {
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	box-sizing: border-box;
+	background: var(--accent-blue);
+	height: 100%;
+	margin: 0;
+	padding: 0;
 }
 
 *,
@@ -71,13 +80,13 @@ html {
 }
 
 body {
-	min-height: 80vh;
+	position: relative;
+	min-height: 100%;
 	background: var(--background);
 	color: var(--contrast);
 	font-family: var(--font);
-	margin: auto;
+	margin: 0;
 	font-size: 1.2rem;
-	padding-bottom: 1rem;
 }
 
 .root {
@@ -86,7 +95,8 @@ body {
 	justify-content: center;
 	align-items: center;
 	gap: 1em;
-	padding: 0 1rem;
+	padding: 0 1rem 5rem;
+	background: var(--background);
 
 	> * + * {
 		margin: 0;
