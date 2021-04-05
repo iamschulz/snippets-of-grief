@@ -53,6 +53,9 @@ export default {
 			lang: 'de',
 			background_color: '#93a5d1',
 			theme_color: '#93a5d1',
+			icon: {
+				fileName: 'AppIcon.png',
+			},
 		},
 		meta: {
 			theme_color: '#93a5d1',
