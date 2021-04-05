@@ -23,6 +23,20 @@ export default defineComponent({
 	font-display: fallback;
 }
 
+$shadowColor: #000;
+
+@mixin elevation($level) {
+	box-shadow: 0px ($level * $level * 1px) ($level * $level * 2px) ($level * 1px - 1px) fade-out($shadowColor, 0.86),
+		0px 3px (($level - 1) * 5px) (($level - 2) * 2px) fade-out($shadowColor, 0.88),
+		0px (($level - 1) * 1.5px) ($level * 2px) (($level - 1) * 1.5px) fade-out($shadowColor, 0.8);
+}
+
+@for $i from 1 through 4 {
+	.elevation-#{$i} {
+		@include elevation($i);
+	}
+}
+
 :root {
 	--background: rgb(235, 242, 255);
 	--contrast: rgb(48, 48, 48);
@@ -36,8 +50,8 @@ export default defineComponent({
 html {
 	font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
 		sans-serif;
-	font-size: 16px;
-	word-spacing: 1px;
+	font-size: clamp(1rem, 1.5vw, 1.8rem);
+	word-spacing: 0.0625rem;
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 	-moz-osx-font-smoothing: grayscale;
@@ -78,6 +92,7 @@ body {
 	display: block;
 	width: clamp(300px, 80vw, 50ch);
 	margin: auto;
+	font-size: 1rem;
 }
 
 .cursive {
@@ -94,7 +109,7 @@ body {
 	border-radius: 4px;
 	text-align: center;
 	text-decoration: none;
-	font-size: 1.4em;
+	font-size: 1.4rem;
 	transition: background-position 0.2s ease-out;
 
 	&:hover {

@@ -46,8 +46,8 @@ export default defineComponent({
 <style lang="scss" scoped>
 .stack {
 	--activeTransform: translate(0%, 140%);
-	--stackWidth: 320px;
-	--stackHeight: 490px;
+	--stackWidth: 20rem;
+	--stackHeight: 30.625rem;
 	position: relative;
 	display: flex;
 	list-style: none;
@@ -74,16 +74,16 @@ export default defineComponent({
 		}
 
 		> * {
-			top: -55px;
-			left: 55px;
+			top: -3.4375rem;
+			left: 3.4375rem;
 		}
 	}
 }
 
 @media (min-aspect-ratio: 10/7) {
 	.stack {
-		--stackWidth: 520px;
-		--stackHeight: 220px;
+		--stackWidth: 32.5rem;
+		--stackHeight: 13.75rem;
 		--activeTransform: translate(110%, 1em);
 	}
 }

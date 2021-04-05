@@ -1,6 +1,6 @@
 <template>
 	<article
-		class="card"
+		class="card elevation-2"
 		:data-id="card.id"
 		:data-index="index"
 		:data-is-active="isActive()"
@@ -59,7 +59,7 @@ export default defineComponent({
 <style lang="scss" scoped>
 .card {
 	--active: 0;
-	--border-radius: 5px;
+	--border-radius: 0.3125rem;
 	--landscape: 0deg;
 	position: relative;
 	display: grid;
@@ -68,7 +68,6 @@ export default defineComponent({
 	height: 18.125rem;
 	border-radius: var(--border-radius);
 	background-color: #eee;
-	box-shadow: 0 4px 8px 1px rgba(0, 0, 0, 0.14), 0 3px 5px 0 rgba(0, 0, 0, 0.12), 0 1.5px 4px 1.5px rgba(0, 0, 0, 0.2);
 	transform-style: preserve-3d;
 	backface-visibility: hidden;
 	transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;

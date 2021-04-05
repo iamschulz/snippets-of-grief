@@ -5,7 +5,7 @@
 		</Header>
 		<div class="root">
 			{{ userText }}
-			<NuxtLink to="/Cards" class="button">Von vorne anfangen?</NuxtLink>
+			<NuxtLink to="/Cards" class="button elevation-1">Von vorne anfangen?</NuxtLink>
 		</div>
 	</div>
 </template>

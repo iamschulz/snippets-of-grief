@@ -14,7 +14,7 @@
 			<textarea class="content" ref="textAreaEl" @input="resize" v-model="userText" autofocus></textarea>
 
 			<transition name="pop-in">
-				<NuxtLink v-if="isReady" to="/Finish" class="button">Fertig?</NuxtLink>
+				<NuxtLink v-if="isReady" to="/Finish" class="button elevation-1">Fertig?</NuxtLink>
 			</transition>
 		</div>
 	</div>

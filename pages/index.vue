@@ -5,7 +5,7 @@
 			<template v-slot:icon><PenIcon /></template>
 		</Header>
 		<div class="root">
-			<NuxtLink to="/Cards" class="button">Schreibritual starten</NuxtLink>
+			<NuxtLink to="/Cards" class="button elevation-1">Schreibritual starten</NuxtLink>
 			<details class="content">
 				<summary>Mehr Infos?</summary>
 				<p>Der richtige Zeitpunkt für eine Auszeit mit Stift und Papier ist, wenn...</p>

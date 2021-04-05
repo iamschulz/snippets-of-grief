@@ -44,7 +44,7 @@ export default defineComponent({
 
 <style lang="scss" scoped>
 .dice {
-	--diceWidth: clamp(9.375rem, 50vw, 12.5rem);
+	--diceWidth: clamp(9.375rem, 50vw, 10rem);
 
 	&::before {
 		content: '';
@@ -52,8 +52,8 @@ export default defineComponent({
 		position: absolute;
 		width: 0px;
 		height: 0px;
-		box-shadow: 0 0 175px 160px rgba(0, 0, 0, 0.4);
-		transform: translate3D(10px, 100px, 40px) rotateX(90deg);
+		box-shadow: 0 0 10.9375rem 7rem rgba(0, 0, 0, 0.4);
+		transform: translate3D(0.625rem, 6.25rem, 0) rotateX(90deg);
 	}
 
 	width: 0;
@@ -129,9 +129,9 @@ export default defineComponent({
 		place-items: center;
 		width: var(--diceWidth);
 		height: var(--diceWidth);
-		border-radius: 5px;
+		border-radius: 0.3125rem;
 		background: #fff;
-		box-shadow: inset 0 0 30px rgba(125, 125, 125, 0.8);
+		box-shadow: inset 0 0 1.875rem rgba(125, 125, 125, 0.8);
 		font-size: 1.8rem;
 		text-align: center;
 		color: #000;

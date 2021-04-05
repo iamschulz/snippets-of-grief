@@ -7,7 +7,7 @@
 		<div class="root">
 			<Stack />
 			<transition name="pop-in">
-				<NuxtLink to="/dice" v-if="isCardSelected()" class="button">Weiter</NuxtLink>
+				<NuxtLink to="/dice" v-if="isCardSelected()" class="button elevation-1">Weiter</NuxtLink>
 			</transition>
 		</div>
 	</div>

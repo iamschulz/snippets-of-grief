@@ -7,7 +7,7 @@
 		<div class="root">
 			<Dice />
 			<transition name="pop-in">
-				<NuxtLink to="/Text" v-if="isTextSelected()" class="button">Weiter</NuxtLink>
+				<NuxtLink to="/Text" v-if="isTextSelected()" class="button elevation-1">Weiter</NuxtLink>
 			</transition>
 		</div>
 	</div>
@@ -40,4 +40,8 @@ export default defineComponent({
 })
 </script>
 
-<style></style>
+<style lang="scss" scoped>
+.button {
+	z-index: 1;
+}
+</style>
