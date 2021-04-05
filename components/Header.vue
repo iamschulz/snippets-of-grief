@@ -1,5 +1,5 @@
 <template>
-	<div class="header" :style="`--header-bg: var(--accent-${color})`">
+	<div class="header elevation-2">
 		<div class="header__icon">
 			<slot name="icon"></slot>
 		</div>
@@ -9,28 +9,27 @@
 	</div>
 </template>
 
-<script>
-export default {
-	props: {
-		color: {
-			type: String,
-			default: 'red',
-		},
-	},
-}
-</script>
-
 <style lang="scss" scoped>
 .header {
 	position: sticky;
 	top: 0;
 	z-index: 100;
 	background-color: var(--header-bg);
+	background-image: var(--accent-gradient);
 	display: flex;
 	align-items: center;
 	justify-content: center;
 	width: 100%;
 	margin-bottom: 1rem;
+
+	&::before {
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(180deg, var(--accent-blue) 0%, rgba(0, 0, 0, 0) 100%);
+		z-index: -1;
+	}
 
 	&__icon {
 		width: 2em;

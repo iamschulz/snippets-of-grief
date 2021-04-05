@@ -42,6 +42,8 @@ $shadowColor: #000;
 	--contrast: rgb(48, 48, 48);
 	--accent-red: #cc9aa2;
 	--accent-blue: #93a5d1;
+	--accent-blend: rgba(174, 165, 206, 1);
+	--accent-gradient: linear-gradient(33deg, var(--accent-blue) 0%, var(--accent-blend) 66%, var(--accent-red) 100%);
 	--accent-redContrast: #fff;
 	--font: sans-serif;
 	--accent-redFont: 'Accent', cursive;
@@ -102,6 +104,7 @@ body {
 .button {
 	@extend .cursive;
 	background-color: var(--accent-red);
+	background-image: var(--accent-gradient);
 	background-position: 100% 100%;
 	background-size: 150%;
 	color: var(--accent-redContrast);
@@ -137,6 +140,10 @@ h6 {
 	@extend .cursive;
 	font-weight: normal;
 	padding: 0 0.5ch;
+
+	.root > & {
+		line-height: 1.2;
+	}
 }
 
 .small {
