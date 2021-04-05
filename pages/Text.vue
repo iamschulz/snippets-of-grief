@@ -1,6 +1,6 @@
 <template lang="html">
 	<div>
-		<Header color="blue">
+		<Header>
 			<template v-slot:title>Drauf losschreiben</template>
 			<template v-slot:icon><PenIcon /></template>
 		</Header>

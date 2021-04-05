@@ -1,6 +1,6 @@
 <template lang="html">
 	<div>
-		<Header color="blue">
+		<Header>
 			<template v-slot:title>Würfel eine Textart</template>
 			<template v-slot:icon><DiceIcon /></template>
 		</Header>

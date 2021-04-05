@@ -1,10 +1,10 @@
 <template lang="html">
 	<div>
-		<Header color="blue">
+		<Header>
 			<template v-slot:title>Weiter machen</template>
 		</Header>
 		<div class="root">
-			<section class="user-text">
+			<section class="user-text elevation-4">
 				<Card :cardId="cardId" class="user-text__card" />
 				<article class="user-text__text">{{ userText }}</article>
 			</section>
@@ -26,7 +26,7 @@
 					<li>Das Schriftstück in einer Collage weiter verarbeiten</li>
 				</ul>
 			</div>
-			<NuxtLink to="/Cards" class="button elevation-1">Von vorne anfangen?</NuxtLink>
+			<NuxtLink to="/" class="button elevation-1">Von vorne anfangen?</NuxtLink>
 		</div>
 	</div>
 </template>
@@ -55,7 +55,29 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
-.user-text__text {
-	white-space: pre;
+.user-text {
+	display: grid;
+	place-items: center;
+	grid-gap: 1rem;
+	gap: 1rem;
+	padding: 1rem;
+	background: #d0d8e8;
+	border-radius: 0.3125rem;
+
+	&__card {
+		margin-top: 2rem;
+	}
+	&__text {
+		margin-top: 1rem;
+		white-space: pre-wrap;
+	}
+}
+
+@media (min-width: 50rem) {
+	.user-text {
+		grid-template-columns: 15.75rem 1fr;
+		padding: 1rem 5rem;
+		gap: 3rem;
+	}
 }
 </style>

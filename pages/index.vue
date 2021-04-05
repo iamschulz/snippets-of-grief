@@ -1,10 +1,16 @@
 <template lang="html">
 	<div>
-		<Header color="blue">
-			<template v-slot:title> So funktioniert's </template>
-			<template v-slot:icon><PenIcon /></template>
+		<Header>
+			<template v-slot:title> Snippets of Grief </template>
+			<template v-slot:icon><AppIcon /></template>
 		</Header>
 		<div class="root">
+			<h2>So funktioniert's:</h2>
+			<ol class="content index__instructions">
+				<li><CardsIcon /> Karte Ziehen</li>
+				<li><DiceIcon /> Textart würfeln</li>
+				<li><PenIcon /> Drauf los schreiben</li>
+			</ol>
 			<NuxtLink to="/Cards" class="button elevation-1">Schreibritual starten</NuxtLink>
 			<details class="content">
 				<summary>Mehr Infos?</summary>
@@ -35,10 +41,16 @@
 
 <script>
 import Header from '@/components/Header.vue'
+import AppIcon from '@/assets/AppIcon.svg?inline'
+import CardsIcon from '@/assets/CardsIcon.svg?inline'
+import DiceIcon from '@/assets/DiceIcon.svg?inline'
 import PenIcon from '@/assets/PenIcon.svg?inline'
 export default {
 	components: {
 		Header,
+		AppIcon,
+		CardsIcon,
+		DiceIcon,
 		PenIcon,
 	},
 }
@@ -51,6 +63,14 @@ export default {
 
 	> * {
 		width: 100%;
+	}
+
+	&__instructions {
+		svg {
+			width: 3em;
+			vertical-align: middle;
+			margin: 1rem 0.5ch 1rem 0;
+		}
 	}
 }
 </style>
