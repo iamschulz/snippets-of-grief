@@ -5,7 +5,7 @@
 			<template v-slot:icon><PenIcon /></template>
 		</Header>
 		<div class="root">
-			<h1>{{ text.callToAction }} über…</h1>
+			<h2>{{ text.callToAction }} über…</h2>
 			<Card :cardId="card.id" :index="card.id" :open="true" />
 			<details class="content">
 				<summary>Du weißt nicht, wie du anfangen sollst?</summary>
