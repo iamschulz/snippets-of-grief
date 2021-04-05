@@ -4,10 +4,13 @@
 			<template v-slot:title>Weiter machen</template>
 		</Header>
 		<div class="root">
-			<section class="user-text elevation-4">
-				<Card :cardId="cardId" class="user-text__card" />
+			<section class="user-text">
+				<div class="user-text__card">
+					<Card :cardId="cardId" />
+				</div>
 				<article class="user-text__text">{{ userText }}</article>
 			</section>
+			<hr />
 			<div class="content">
 				<h2>Was passiert nach dem Schreiben?</h2>
 				<ul>
@@ -57,12 +60,12 @@ export default defineComponent({
 <style lang="scss" scoped>
 .user-text {
 	display: grid;
-	place-items: center;
+	place-items: top center;
 	grid-gap: 1rem;
 	gap: 1rem;
 	padding: 1rem;
-	background: #d0d8e8;
 	border-radius: 0.3125rem;
+	font-size: 1rem;
 
 	&__card {
 		margin-top: 2rem;
@@ -76,8 +79,13 @@ export default defineComponent({
 @media (min-width: 50rem) {
 	.user-text {
 		grid-template-columns: 15.75rem 1fr;
-		padding: 1rem 5rem;
+		padding: 1rem 5rem 2rem;
 		gap: 3rem;
+
+		.card {
+			position: sticky;
+			top: 4.375rem;
+		}
 	}
 }
 </style>

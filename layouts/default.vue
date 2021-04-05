@@ -149,6 +149,16 @@ h6 {
 	}
 }
 
+hr {
+	width: 100%;
+	height: 0.3125rem;
+	background: var(--accent-gradient);
+}
+
+summary {
+	cursor: pointer;
+}
+
 .small {
 	font-size: 0.8em;
 }
