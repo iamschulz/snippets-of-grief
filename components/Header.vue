@@ -37,6 +37,10 @@
 		display: grid;
 		place-items: center;
 
+		&:empty {
+			display: none;
+		}
+
 		svg {
 			width: 100%;
 			height: 100%;
@@ -47,6 +51,10 @@
 		font-size: 1.5rem;
 		margin: 0.1em;
 		color: var(--contrast);
+
+		&:empty {
+			display: none;
+		}
 	}
 }
 </style>
