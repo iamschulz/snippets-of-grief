@@ -54,7 +54,8 @@ export default {
 			background_color: '#93a5d1',
 			theme_color: '#93a5d1',
 			icon: {
-				fileName: 'AppIcon.png',
+				source: 'static/icon.png',
+				fileName: 'icon.png',
 			},
 		},
 		meta: {
