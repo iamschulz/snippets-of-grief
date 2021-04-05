@@ -8,7 +8,6 @@ export default {
 		meta: [
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
-			{ hid: 'description', name: 'description', content: 'Ein Schreibritual für Trauernde.' },
 			{ name: 'theme-color', content: '#93a5d1' },
 		],
 		link: [{ rel: 'icon', type: 'image/x-icon', href: 'AppIcon.svg' }],
@@ -50,6 +49,7 @@ export default {
 	pwa: {
 		manifest: {
 			name: 'Snippets of Grief',
+			short_name: 'Snippets of Grief',
 			lang: 'de',
 			background_color: '#93a5d1',
 			theme_color: '#93a5d1',

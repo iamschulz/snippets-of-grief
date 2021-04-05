@@ -1,5 +1,6 @@
 {
 	"name": "snippets-of-grief",
+	"description": "Ein Schreibritual für Trauernde.",
 	"version": "1.0.0",
 	"private": true,
 	"scripts": {
