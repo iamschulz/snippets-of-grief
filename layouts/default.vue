@@ -122,11 +122,13 @@ body {
 	background-size: 150%;
 	color: var(--contrast);
 	padding: 0.5em 2ch;
+	border: none;
 	border-radius: 4px;
 	text-align: center;
 	text-decoration: none;
 	font-size: 1.4rem;
 	transition: background-position 0.2s ease-out;
+	cursor: pointer;
 
 	&:hover {
 		background-position: 0% 0%;

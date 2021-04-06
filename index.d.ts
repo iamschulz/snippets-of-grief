@@ -3,3 +3,8 @@ declare module '*.svg?inline' {
 	const content: VueConstructor<Vue>
 	export default content
 }
+
+declare module 'dom-to-image' {
+	const x: any
+	export = x
+}

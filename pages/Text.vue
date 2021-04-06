@@ -6,7 +6,7 @@
 		</Header>
 		<div class="root">
 			<h2>{{ text.callToAction }} über…</h2>
-			<Card :cardId="card.id" :index="card.id" :open="true" />
+			<Card :cardId="card.id" :index="card.id" :open="true" :simple="true" />
 			<details class="content">
 				<summary>Du weißt nicht, wie du anfangen sollst?</summary>
 				<div v-html="helpText"></div>

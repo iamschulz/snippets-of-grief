@@ -1,12 +1,12 @@
-<template lang="html">
+<template>
 	<div>
 		<Header>
 			<template v-slot:title>Weiter machen</template>
 		</Header>
 		<div class="root">
-			<section class="user-text">
+			<section class="user-text" ref="userTextEl">
 				<div class="user-text__card">
-					<Card :cardId="cardId" />
+					<Card v-if="cardId" :cardId="cardId" :open="true" :simple="true" />
 				</div>
 				<article class="user-text__text">{{ userText }}</article>
 			</section>
@@ -29,25 +29,52 @@
 					<li>Das Schriftstück in einer Collage weiter verarbeiten</li>
 				</ul>
 			</div>
+			<button class="button elevation-1" @click="generateImage">Deinen Text speichern</button>
 			<NuxtLink to="/" class="button elevation-1">Von vorne anfangen?</NuxtLink>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from '@nuxtjs/composition-api'
+import { defineComponent, inject, ref } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
 import Card from '@/components/Card.vue'
+import * as domToImage from 'dom-to-image'
 
 export default defineComponent({
 	setup() {
 		const store = inject('store') as StoreInterface
 		const userText = store.getUserText()
 		const cardId = store.getActiveCardId()
+		const userTextEl = ref<HTMLElement | null>(null)
+
+		const generateImage = () => {
+			console.log(userTextEl)
+			if (!userTextEl.value) {
+				return
+			}
+
+			// image does not work in safari
+			domToImage
+				.toJpeg(userTextEl.value, {
+					quality: 0.8,
+					background: '#ebf2ff',
+				})
+				.then(function (dataUrl: string) {
+					var img = new Image()
+					img.src = dataUrl
+					document.body.appendChild(img)
+				})
+				.catch(function (error: string) {
+					console.error('oops, something went wrong!', error)
+				})
+		}
 
 		return {
 			userText,
 			cardId,
+			userTextEl,
+			generateImage,
 		}
 	},
 

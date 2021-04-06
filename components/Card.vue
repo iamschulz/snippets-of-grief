@@ -1,6 +1,6 @@
 <template>
 	<article
-		class="card elevation-2"
+		:class="`card ${simple && 'is--simple'} elevation-2`"
 		:data-id="card.id"
 		:data-index="index"
 		:data-is-active="isActive()"
@@ -29,6 +29,10 @@ export default defineComponent({
 			type: Number,
 		},
 		open: {
+			type: Boolean,
+			default: false,
+		},
+		simple: {
 			type: Boolean,
 			default: false,
 		},
@@ -71,6 +75,13 @@ export default defineComponent({
 	transform-style: preserve-3d;
 	backface-visibility: hidden;
 	transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+
+	&.is--simple,
+	&.is--simple * {
+		&::before {
+			display: none;
+		}
+	}
 
 	--rotateY: calc(180deg + var(--active) * 180deg);
 	--rotateZ: calc(var(--active) * 4deg + (1 - var(--active)) * 90deg);

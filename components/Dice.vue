@@ -17,16 +17,15 @@ export default defineComponent({
 		const store = inject('store') as StoreInterface
 		const content = store.getTexts()
 		const diceValue = ref(0)
-		const diceEL = ref(null)
+		const diceEL = ref<HTMLElement | null>(null)
 		const rollDice = () => {
 			diceValue.value = Math.ceil(Math.random() * 6)
 
-			const thisDiceEl = (diceEL.value as unknown) as HTMLElement
-			thisDiceEl.setAttribute('data-rolling', 'start')
+			diceEL.value?.setAttribute('data-rolling', 'start')
 			setTimeout(() => {
-				thisDiceEl.setAttribute('data-rolling', 'rolling')
+				diceEL.value?.setAttribute('data-rolling', 'rolling')
 				setTimeout(() => {
-					thisDiceEl.removeAttribute('data-rolling')
+					diceEL.value?.removeAttribute('data-rolling')
 					store.setActiveTextId(diceValue.value - 1)
 				}, 2000)
 			}, 1000)
