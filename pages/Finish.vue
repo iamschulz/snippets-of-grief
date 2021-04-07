@@ -29,14 +29,14 @@
 					<li>Das Schriftstück in einer Collage weiter verarbeiten</li>
 				</ul>
 			</div>
-			<button class="button elevation-1" @click="generateImage">Deinen Text speichern</button>
+			<button class="button elevation-1" @click="handleShareClick">Deinen Text speichern</button>
 			<NuxtLink to="/" class="button elevation-1">Von vorne anfangen?</NuxtLink>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, ref } from '@nuxtjs/composition-api'
+import { defineComponent, inject, ref, onMounted } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
 import Card from '@/components/Card.vue'
 import * as domToImage from 'dom-to-image'
@@ -48,11 +48,47 @@ export default defineComponent({
 		const cardId = store.getActiveCardId()
 		const userTextEl = ref<HTMLElement | null>(null)
 
-		const shareImage = (image: File) => {
-			if (navigator.canShare && navigator.canShare({ files: [image] })) {
+		const shareImage = ref<File | null>(null)
+
+		const convertToImage = (imageString: string): File => {
+			return new File([imageString], 'file_name', { type: 'image/jpeg', lastModified: Date.now() })
+		}
+
+		const generateImage = (): File | null => {
+			if (!userTextEl.value) {
+				return null
+			}
+
+			// image does not work in safari
+			domToImage
+				.toJpeg(userTextEl.value, {
+					quality: 0.8,
+					background: '#ebf2ff',
+				})
+				.then(function (dataUrl: string) {
+					console.log('generated2')
+					shareImage.value = convertToImage(dataUrl)
+				})
+				.catch(function (error: string) {
+					console.error('oops, something went wrong!', error)
+					return null
+				})
+			return null
+		}
+
+		onMounted(() => {
+			generateImage()
+		})
+
+		const handleShareClick = (): void => {
+			if (!shareImage.value) {
+				console.log('no share image', shareImage)
+				return
+			}
+			if (navigator.canShare && navigator.canShare({ files: [shareImage.value] })) {
 				navigator
 					.share({
-						files: [image],
+						files: [shareImage.value],
 						title: 'test title 2',
 						text: 'test text 2',
 					})
@@ -63,35 +99,12 @@ export default defineComponent({
 			}
 		}
 
-		const convertToImage = (imageString: string): File => {
-			return new File([imageString], 'file_name', { type: 'image/jpeg', lastModified: Date.now() })
-		}
-
-		const generateImage = () => {
-			if (!userTextEl.value) {
-				return
-			}
-
-			// image does not work in safari
-			domToImage
-				.toJpeg(userTextEl.value, {
-					quality: 0.8,
-					background: '#ebf2ff',
-				})
-				.then(function (dataUrl: string) {
-					shareImage(convertToImage(dataUrl))
-				})
-				.catch(function (error: string) {
-					console.error('oops, something went wrong!', error)
-					return null
-				})
-		}
-
 		return {
 			userText,
 			cardId,
 			userTextEl,
-			generateImage,
+			shareImage,
+			handleShareClick,
 		}
 	},
 
