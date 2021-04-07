@@ -29,7 +29,7 @@
 					<li>Das Schriftstück in einer Collage weiter verarbeiten</li>
 				</ul>
 			</div>
-			<button class="button elevation-1" @click="handleShareClick">Deinen Text speichern</button>
+			<button class="button elevation-1" @click.prevent="handleShareClick">Deinen Text speichern</button>
 			<NuxtLink to="/" class="button elevation-1">Von vorne anfangen?</NuxtLink>
 		</div>
 	</div>
@@ -80,7 +80,8 @@ export default defineComponent({
 			generateImage()
 		})
 
-		const handleShareClick = (): void => {
+		const handleShareClick = (e: Event): void => {
+			console.log(e.type, e.isTrusted)
 			if (!shareImage.value) {
 				console.log('no share image', shareImage)
 				return
