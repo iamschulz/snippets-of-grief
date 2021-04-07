@@ -80,16 +80,15 @@ export default defineComponent({
 			generateImage()
 		})
 
-		const handleShareClick = (e: Event): void => {
-			console.log(e.type, e.isTrusted)
+		const handleShareClick = (): void => {
 			if (!shareImage.value) {
 				console.log('no share image', shareImage)
 				return
 			}
-			if (navigator.canShare && navigator.canShare({ files: [shareImage.value] })) {
+			if (navigator.canShare) {
 				navigator
 					.share({
-						files: [shareImage.value],
+						//files: [shareImage.value],
 						title: 'test title 2',
 						text: 'test text 2',
 					})
