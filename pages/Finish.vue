@@ -53,8 +53,8 @@ export default defineComponent({
 				navigator
 					.share({
 						files: [image],
-						title: 'test title',
-						text: 'test text',
+						title: 'test title 2',
+						text: 'test text 2',
 					})
 					.then(() => console.log('Share was successful.'))
 					.catch((error) => console.log('Sharing failed', error))
