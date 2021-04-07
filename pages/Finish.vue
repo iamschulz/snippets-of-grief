@@ -48,8 +48,26 @@ export default defineComponent({
 		const cardId = store.getActiveCardId()
 		const userTextEl = ref<HTMLElement | null>(null)
 
+		const shareImage = (image: File) => {
+			if (navigator.canShare && navigator.canShare({ files: [image] })) {
+				navigator
+					.share({
+						files: [image],
+						title: 'test title',
+						text: 'test text',
+					})
+					.then(() => console.log('Share was successful.'))
+					.catch((error) => console.log('Sharing failed', error))
+			} else {
+				console.log(`Your system doesn't support sharing files.`)
+			}
+		}
+
+		const convertToImage = (imageString: string): File => {
+			return new File([imageString], 'file_name', { type: 'image/jpeg', lastModified: Date.now() })
+		}
+
 		const generateImage = () => {
-			console.log(userTextEl)
 			if (!userTextEl.value) {
 				return
 			}
@@ -61,12 +79,11 @@ export default defineComponent({
 					background: '#ebf2ff',
 				})
 				.then(function (dataUrl: string) {
-					var img = new Image()
-					img.src = dataUrl
-					document.body.appendChild(img)
+					shareImage(convertToImage(dataUrl))
 				})
 				.catch(function (error: string) {
 					console.error('oops, something went wrong!', error)
+					return null
 				})
 		}
 
@@ -91,8 +108,8 @@ export default defineComponent({
 	grid-gap: 1rem;
 	gap: 1rem;
 	padding: 1rem;
-	border-radius: 0.3125rem;
 	font-size: 1rem;
+	background: var(--background);
 
 	&__card {
 		margin-top: 2rem;
