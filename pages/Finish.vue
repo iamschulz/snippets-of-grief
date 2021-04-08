@@ -29,7 +29,7 @@
 					<li>Das Schriftstück in einer Collage weiter verarbeiten</li>
 				</ul>
 			</div>
-			<button class="button elevation-1" @click.prevent="handleShareClick">Deinen Text speichern</button>
+			<button class="button elevation-1" @click.prevent="handleShareClick">Deinen Text teilen</button>
 			<NuxtLink to="/" class="button elevation-1">Von vorne anfangen?</NuxtLink>
 		</div>
 	</div>
@@ -50,11 +50,34 @@ export default defineComponent({
 
 		const shareImage = ref<File | null>(null)
 
-		const convertToImage = (imageString: string): File => {
-			return new File([imageString], 'file_name', { type: 'image/jpeg', lastModified: Date.now() })
+		/* const convertToImage = (imageString: string): File => {
+			return new File([imageString], 'snippet-of-grief.jpeg', { type: 'image/jpeg', lastModified: Date.now() })
+		} */
+
+		const convertToImage = (base64Data: string) => {
+			console.log(base64Data)
+			const contentType = 'image/jpeg'
+			const sliceSize = 1024
+			const byteCharacters = atob(base64Data.split(',')[1])
+			const bytesLength = byteCharacters.length
+			const slicesCount = Math.ceil(bytesLength / sliceSize)
+			const byteArrays = new Array(slicesCount)
+
+			for (let sliceIndex = 0; sliceIndex < slicesCount; ++sliceIndex) {
+				const begin = sliceIndex * sliceSize
+				const end = Math.min(begin + sliceSize, bytesLength)
+
+				const bytes = new Array(end - begin)
+				for (let offset = begin, i = 0; offset < end; ++i, ++offset) {
+					bytes[i] = byteCharacters[offset].charCodeAt(0)
+				}
+				byteArrays[sliceIndex] = new Uint8Array(bytes)
+			}
+			const blob = new Blob(byteArrays, { type: contentType })
+			return new File([blob], 'snippet-of-grief.jpeg', { type: contentType, lastModified: Date.now() })
 		}
 
-		const generateImage = (): File | null => {
+		const generateImageFile = (): File | null => {
 			if (!userTextEl.value) {
 				return null
 			}
@@ -68,6 +91,8 @@ export default defineComponent({
 				.then(function (dataUrl: string) {
 					console.log('generated2')
 					shareImage.value = convertToImage(dataUrl)
+					console.log(dataUrl)
+					console.log(shareImage.value)
 				})
 				.catch(function (error: string) {
 					console.error('oops, something went wrong!', error)
@@ -77,7 +102,7 @@ export default defineComponent({
 		}
 
 		onMounted(() => {
-			generateImage()
+			generateImageFile()
 		})
 
 		const handleShareClick = (): void => {
@@ -85,12 +110,13 @@ export default defineComponent({
 				console.log('no share image', shareImage)
 				return
 			}
-			if (navigator.canShare) {
+			if (navigator.canShare && navigator.canShare({ files: [shareImage.value] })) {
 				navigator
 					.share({
-						//files: [shareImage.value],
+						files: [shareImage.value], // doesnt work here. invalid file?
 						title: 'test title 2',
 						text: 'test text 2',
+						url: `${location.protocol}//${location.host}`,
 					})
 					.then(() => console.log('Share was successful.'))
 					.catch((error) => console.log('Sharing failed', error))
