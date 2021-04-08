@@ -46,6 +46,7 @@ export default defineComponent({
 		const store = inject('store') as StoreInterface
 		const userText = store.getUserText()
 		const cardId = store.getActiveCardId()
+		const card = store.getCardById(cardId)
 		const userTextEl = ref<HTMLElement | null>(null)
 
 		const shareImage = ref<File | null>(null)
@@ -114,8 +115,8 @@ export default defineComponent({
 				navigator
 					.share({
 						files: [shareImage.value], // doesnt work here. invalid file?
-						title: 'test title 2',
-						text: 'test text 2',
+						title: 'Snippets of Grief',
+						text: `${userText.title} zum Thema ${card.alt}`,
 						url: `${location.protocol}//${location.host}`,
 					})
 					.then(() => console.log('Share was successful.'))
