@@ -31,6 +31,7 @@
 			</div>
 			<button class="button elevation-1" @click.prevent="handleShareClick">Deinen Text teilen</button>
 			<NuxtLink to="/" class="button elevation-1">Von vorne anfangen?</NuxtLink>
+			<img id="foo" :src="shareImageSrc" alt="foo" width="500" height="500" style="border: 2px solid black" />
 		</div>
 	</div>
 </template>
@@ -39,7 +40,6 @@
 import { defineComponent, inject, ref, onMounted } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
 import Card from '@/components/Card.vue'
-import * as domToImage from 'dom-to-image'
 
 export default defineComponent({
 	setup() {
@@ -48,12 +48,8 @@ export default defineComponent({
 		const cardId = store.getActiveCardId()
 		const card = store.getCardById(cardId)
 		const userTextEl = ref<HTMLElement | null>(null)
-
 		const shareImage = ref<File | null>(null)
-
-		/* const convertToImage = (imageString: string): File => {
-			return new File([imageString], 'snippet-of-grief.jpeg', { type: 'image/jpeg', lastModified: Date.now() })
-		} */
+		const shareImageSrc = ref('')
 
 		const convertToImage = (base64Data: string) => {
 			console.log(base64Data)
@@ -78,27 +74,46 @@ export default defineComponent({
 			return new File([blob], 'snippet-of-grief.jpeg', { type: contentType, lastModified: Date.now() })
 		}
 
-		const generateImageFile = (): File | null => {
-			if (!userTextEl.value) {
+		const generateImageFile = async (): Promise<File | null> => {
+			const c = document.createElement('canvas')
+			c.width = 1920
+			c.height = 1920
+			const ctx = c.getContext('2d')
+			if (!ctx) {
 				return null
 			}
 
-			// image does not work in safari
-			domToImage
-				.toJpeg(userTextEl.value, {
-					quality: 0.8,
-					background: '#ebf2ff',
-				})
-				.then(function (dataUrl: string) {
-					console.log('generated2')
-					shareImage.value = convertToImage(dataUrl)
-					console.log(dataUrl)
-					console.log(shareImage.value)
-				})
-				.catch(function (error: string) {
-					console.error('oops, something went wrong!', error)
-					return null
-				})
+			ctx.fillStyle = '#ebf2ff'
+			ctx.fillRect(0, 0, c.width, c.height)
+
+			ctx.font = '100px Accent'
+			ctx.fillStyle = '#000'
+			ctx.fillText('Snippets of Grief', 585, 140)
+
+			// create image from card selector
+			const image = Array.from(document.images).find((x) => x.className.includes('card__content'))
+			if (!image) {
+				return null
+			}
+
+			image.onload = () => {
+				ctx.save()
+				if (card.landscape) {
+					ctx.rotate(5.3 / Math.PI)
+					ctx.translate(100, -1500)
+				} else {
+					ctx.rotate(-0.25 / Math.PI)
+					ctx.translate(0, 240)
+				}
+				ctx.drawImage(image, 0, 0, 1920, 1920, 20, 20, 1000, 1000)
+				ctx.restore()
+
+				// todo: remove shareImageSrc
+				shareImageSrc.value = c.toDataURL('image/jpeg')
+			}
+
+			// todo: only trigger this when onload is solved
+			//return convertToImage(c.toDataURL('image/jpeg'))
 			return null
 		}
 
@@ -114,7 +129,7 @@ export default defineComponent({
 			if (navigator.canShare && navigator.canShare({ files: [shareImage.value] })) {
 				navigator
 					.share({
-						files: [shareImage.value], // doesnt work here. invalid file?
+						files: [shareImage.value],
 						title: 'Snippets of Grief',
 						text: `${userText.title} zum Thema ${card.alt}`,
 						url: `${location.protocol}//${location.host}`,
@@ -131,6 +146,7 @@ export default defineComponent({
 			cardId,
 			userTextEl,
 			shareImage,
+			shareImageSrc,
 			handleShareClick,
 		}
 	},
