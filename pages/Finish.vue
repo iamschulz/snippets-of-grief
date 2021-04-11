@@ -31,7 +31,7 @@
 			</div>
 			<button class="button elevation-1" @click.prevent="handleShareClick">Deinen Text teilen</button>
 			<NuxtLink to="/" class="button elevation-1">Von vorne anfangen?</NuxtLink>
-			<img id="foo" :src="shareImageSrc" alt="foo" width="500" height="500" style="border: 2px solid black" />
+			<img id="foo" :src="shareImageSrc" alt="foo" width="500" style="border: 2px solid black" />
 		</div>
 	</div>
 </template>
@@ -50,6 +50,49 @@ export default defineComponent({
 		const userTextEl = ref<HTMLElement | null>(null)
 		const shareImage = ref<File | null>(null)
 		const shareImageSrc = ref('')
+
+		const wrapText = (
+			ctx: CanvasRenderingContext2D,
+			text: string,
+			x: number,
+			y: number,
+			maxWidth: number,
+			lineHeight: number
+		): {
+			width: number
+			height: number
+		} => {
+			ctx.font = '50px Arial'
+			var lines = text.split('\n')
+			let lineCount = lines.length
+
+			for (var i = 0; i < lines.length; i++) {
+				var words = lines[i].split(' ')
+				var line = ''
+
+				for (var n = 0; n < words.length; n++) {
+					var testLine = line + words[n] + ' '
+					var metrics = ctx.measureText(testLine)
+					var testWidth = metrics.width
+					if (testWidth > maxWidth && n > 0) {
+						ctx.fillText(line, x, y)
+						line = words[n] + ' '
+						y += lineHeight
+						lineCount += 1
+					} else {
+						line = testLine
+					}
+				}
+
+				ctx.fillText(line, x, y)
+				y += lineHeight
+			}
+
+			return {
+				width: maxWidth,
+				height: lineHeight * lineCount,
+			}
+		}
 
 		const convertToImage = (base64Data: string) => {
 			console.log(base64Data)
@@ -77,15 +120,25 @@ export default defineComponent({
 		const generateImageFile = async (): Promise<File | null> => {
 			const c = document.createElement('canvas')
 			c.width = 1920
-			c.height = 1920
+			c.height = 1000
 			const ctx = c.getContext('2d')
 			if (!ctx) {
 				return null
 			}
 
+			const textX = card.landscape ? 40 : 800
+			const textY = card.landscape ? 1000 : 300
+			const textWidth = card.landscape ? 1840 : 1080
+
+			// set height
+			const textMeasurements = wrapText(ctx, userText, textX, textY, textWidth, 80)
+			c.height = textMeasurements.height + textY
+
+			// add background
 			ctx.fillStyle = '#ebf2ff'
 			ctx.fillRect(0, 0, c.width, c.height)
 
+			// add title
 			ctx.font = '100px Accent'
 			ctx.fillStyle = '#000'
 			ctx.fillText('Snippets of Grief', 585, 140)
@@ -96,6 +149,7 @@ export default defineComponent({
 				return null
 			}
 
+			// add image to canvas
 			image.onload = () => {
 				ctx.save()
 				if (card.landscape) {
@@ -111,6 +165,9 @@ export default defineComponent({
 				// todo: remove shareImageSrc
 				shareImageSrc.value = c.toDataURL('image/jpeg')
 			}
+
+			// add user text
+			wrapText(ctx, userText, textX, textY, textWidth, 80)
 
 			// todo: only trigger this when onload is solved
 			//return convertToImage(c.toDataURL('image/jpeg'))
