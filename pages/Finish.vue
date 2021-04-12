@@ -29,7 +29,13 @@
 					<li>Das Schriftstück in einer Collage weiter verarbeiten</li>
 				</ul>
 			</div>
-			<button class="button elevation-1" @click.prevent="handleShareClick">Deinen Text teilen</button>
+
+			<button v-if="canFileShare" class="button elevation-1" @click.prevent="handleShareFileClick">
+				Deinen Text teilen
+			</button>
+			<button v-else-if="canShare" class="button elevation-1">Deinen Text teilen</button>
+			<a v-if="!canFileShare" href="" download class="button elevation-1">Text Herunterladen</a>
+
 			<NuxtLink to="/" class="button elevation-1">Von vorne anfangen?</NuxtLink>
 		</div>
 	</div>
@@ -46,8 +52,18 @@ export default defineComponent({
 		const userText = store.getUserText()
 		const cardId = store.getActiveCardId()
 		const card = store.getCardById(cardId)
+		const texts = store.getTexts()
+		const text = texts[store.getActiveTextId() || 0]
 		const userTextEl = ref<HTMLElement | null>(null)
 		const shareImage = ref<File | null>(null)
+		const canShare = navigator.canShare
+		const canFileShare =
+			navigator.canShare &&
+			navigator.canShare({
+				files: [new File([], 'image.jpeg', { type: 'image/jpeg' })],
+			})
+
+		console.log('foo', card)
 
 		const wrapText = async (
 			ctx: CanvasRenderingContext2D,
@@ -194,34 +210,48 @@ export default defineComponent({
 			generateImageFile()
 		})
 
-		const handleShareClick = (): void => {
+		const handleShareFileClick = (): void => {
 			if (!shareImage.value) {
-				console.log('no share image', shareImage)
+				console.warn('no share image', shareImage)
+				handleShareClick()
 				return
 			}
 
-			// todo: text sharing on iOS, download on desktop and iOS
-			if (navigator.canShare && navigator.canShare({ files: [shareImage.value] })) {
-				navigator
-					.share({
-						files: [shareImage.value],
-						title: 'Snippets of Grief',
-						text: `${userText.title} zum Thema ${card.alt}`,
-						url: `${location.protocol}//${location.host}`,
-					})
-					.then(() => console.log('Share was successful.'))
-					.catch((error) => console.log('Sharing failed', error))
-			} else {
-				console.log(`Your system doesn't support sharing files.`)
-			}
+			navigator
+				.share({
+					files: [shareImage.value],
+					title: 'Snippets of Grief',
+					text: `${text.title} zum Thema ${card.alt}`,
+					url: `${location.protocol}//${location.host}`,
+				})
+				.catch((error) => console.error('Sharing File failed', error))
+		}
+
+		const handleShareClick = (): void => {
+			navigator
+				.share({
+					title: 'Snippets of Grief',
+					text: `${text.title} zum Thema ${card.alt}:\n\n${userText}`,
+					url: `${location.protocol}//${location.host}`,
+				})
+				.catch((error) => console.error('Sharing failed', error))
+		}
+
+		const handleDownloadClick = (): void => {
+			// todo: this
+			// window.saveAs(blob, filename)
 		}
 
 		return {
 			userText,
 			cardId,
 			userTextEl,
+			canShare,
+			canFileShare,
 			shareImage,
+			handleShareFileClick,
 			handleShareClick,
+			handleDownloadClick,
 		}
 	},
 
