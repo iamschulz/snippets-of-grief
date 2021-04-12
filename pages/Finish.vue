@@ -31,7 +31,6 @@
 			</div>
 			<button class="button elevation-1" @click.prevent="handleShareClick">Deinen Text teilen</button>
 			<NuxtLink to="/" class="button elevation-1">Von vorne anfangen?</NuxtLink>
-			<img id="foo" :src="shareImageSrc" alt="foo" width="500" style="border: 2px solid black" />
 		</div>
 	</div>
 </template>
@@ -49,19 +48,15 @@ export default defineComponent({
 		const card = store.getCardById(cardId)
 		const userTextEl = ref<HTMLElement | null>(null)
 		const shareImage = ref<File | null>(null)
-		const shareImageSrc = ref('')
 
-		const wrapText = (
+		const wrapText = async (
 			ctx: CanvasRenderingContext2D,
 			text: string,
 			x: number,
 			y: number,
 			maxWidth: number,
 			lineHeight: number
-		): {
-			width: number
-			height: number
-		} => {
+		): Promise<{ width: number; height: number }> => {
 			ctx.font = '50px Arial'
 			var lines = text.split('\n')
 			let lineCount = lines.length
@@ -88,15 +83,13 @@ export default defineComponent({
 				y += lineHeight
 			}
 
-			console.log('wraptext')
 			return {
 				width: maxWidth,
 				height: lineHeight * lineCount,
 			}
 		}
 
-		const convertToImage = (base64Data: string) => {
-			console.log(base64Data)
+		const convertToImage = (base64Data: string): File => {
 			const contentType = 'image/jpeg'
 			const sliceSize = 1024
 			const byteCharacters = atob(base64Data.split(',')[1])
@@ -132,7 +125,7 @@ export default defineComponent({
 			const textWidth = card.landscape ? 1840 : 1080
 
 			// set height
-			const textMeasurements = wrapText(ctx, userText, textX, textY, textWidth, 80)
+			const textMeasurements = await wrapText(ctx, userText, textX, textY, textWidth, 80)
 			c.height = textMeasurements.height + textY
 
 			// add background
@@ -144,14 +137,19 @@ export default defineComponent({
 			ctx.fillStyle = '#000'
 			ctx.fillText('Snippets of Grief', 585, 140)
 
-			// create image from card selector
-			const image = Array.from(document.images).find((x) => x.className.includes('card__content'))
-			if (!image) {
-				return null
+			// add image to canvas
+			const loadImage = (url: string): Promise<void> => {
+				return new Promise((resolve) => {
+					const image = new Image()
+					image.addEventListener('load', () => {
+						drawCardImage(image)
+						resolve()
+					})
+					image.src = url
+				})
 			}
 
-			// add image to canvas
-			image.onload = () => {
+			const drawCardImage = (image: HTMLImageElement) => {
 				ctx.save()
 				if (card.landscape) {
 					ctx.rotate(5.3 / Math.PI)
@@ -170,18 +168,16 @@ export default defineComponent({
 				// go for it
 				ctx.drawImage(image, 0, 0, 1920, 1920, 20, 20, 1000, 1000)
 				ctx.restore()
-
-				// todo: remove shareImageSrc
-				shareImageSrc.value = c.toDataURL('image/jpeg')
-				console.log('onload')
 			}
 
 			// add user text
-			wrapText(ctx, userText, textX, textY, textWidth, 80)
+			const onWrapText = wrapText(ctx, userText, textX, textY, textWidth, 80)
+			const onImageLoad = loadImage(`/cards/1920/card${cardId}.jpg`)
 
-			// todo: only trigger this when onload is solved
-			//return convertToImage(c.toDataURL('image/jpeg'))
-			console.log('finish')
+			await Promise.all([onImageLoad, onWrapText]).then(() => {
+				shareImage.value = convertToImage(c.toDataURL('image/jpeg'))
+			})
+
 			return null
 		}
 
@@ -214,7 +210,6 @@ export default defineComponent({
 			cardId,
 			userTextEl,
 			shareImage,
-			shareImageSrc,
 			handleShareClick,
 		}
 	},
