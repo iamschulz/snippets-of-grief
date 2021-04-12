@@ -54,12 +54,17 @@ export default defineComponent({
 			text: string,
 			x: number,
 			y: number,
-			maxWidth: number,
+			width: number,
 			lineHeight: number
-		): Promise<{ width: number; height: number }> => {
+		): Promise<{
+			width: number
+			maxWidth: number
+			height: number
+		}> => {
 			ctx.font = '50px Arial'
 			var lines = text.split('\n')
 			let lineCount = lines.length
+			let maxWidth = 0
 
 			for (var i = 0; i < lines.length; i++) {
 				var words = lines[i].split(' ')
@@ -69,13 +74,14 @@ export default defineComponent({
 					var testLine = line + words[n] + ' '
 					var metrics = ctx.measureText(testLine)
 					var testWidth = metrics.width
-					if (testWidth > maxWidth && n > 0) {
+					if (testWidth > width && n > 0) {
 						ctx.fillText(line, x, y)
 						line = words[n] + ' '
 						y += lineHeight
 						lineCount += 1
 					} else {
 						line = testLine
+						maxWidth = testWidth > maxWidth ? testWidth : maxWidth
 					}
 				}
 
@@ -84,7 +90,8 @@ export default defineComponent({
 			}
 
 			return {
-				width: maxWidth,
+				width,
+				maxWidth,
 				height: lineHeight * lineCount,
 			}
 		}
@@ -114,7 +121,7 @@ export default defineComponent({
 		const generateImageFile = async (): Promise<File | null> => {
 			const c = document.createElement('canvas')
 			c.width = 1920
-			c.height = 1000
+			c.height = 1280
 			const ctx = c.getContext('2d')
 			if (!ctx) {
 				return null
@@ -126,7 +133,9 @@ export default defineComponent({
 
 			// set height
 			const textMeasurements = await wrapText(ctx, userText, textX, textY, textWidth, 80)
-			c.height = textMeasurements.height + textY
+			c.height = c.height < textMeasurements.height + textY ? textMeasurements.height + textY : c.height
+
+			const textOffset = card.landscape ? c.width / 2 - textMeasurements.maxWidth / 2 : 800
 
 			// add background
 			ctx.fillStyle = '#ebf2ff'
@@ -171,7 +180,7 @@ export default defineComponent({
 			}
 
 			// add user text
-			const onWrapText = wrapText(ctx, userText, textX, textY, textWidth, 80)
+			const onWrapText = wrapText(ctx, userText, textOffset, textY, textWidth, 80)
 			const onImageLoad = loadImage(`/cards/1920/card${cardId}.jpg`)
 
 			await Promise.all([onImageLoad, onWrapText]).then(() => {
@@ -190,6 +199,8 @@ export default defineComponent({
 				console.log('no share image', shareImage)
 				return
 			}
+
+			// todo: text sharing on iOS, download on desktop and iOS
 			if (navigator.canShare && navigator.canShare({ files: [shareImage.value] })) {
 				navigator
 					.share({
@@ -235,6 +246,8 @@ export default defineComponent({
 	}
 	&__text {
 		margin-top: 1rem;
+		display: grid;
+		align-items: center;
 		white-space: pre-wrap;
 	}
 }
