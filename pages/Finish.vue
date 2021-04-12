@@ -88,6 +88,7 @@ export default defineComponent({
 				y += lineHeight
 			}
 
+			console.log('wraptext')
 			return {
 				width: maxWidth,
 				height: lineHeight * lineCount,
@@ -154,16 +155,25 @@ export default defineComponent({
 				ctx.save()
 				if (card.landscape) {
 					ctx.rotate(5.3 / Math.PI)
-					ctx.translate(100, -1500)
+					ctx.translate(120, -1500)
 				} else {
 					ctx.rotate(-0.25 / Math.PI)
 					ctx.translate(0, 240)
 				}
+
+				// drop shadow
+				ctx.shadowOffsetX = 5
+				ctx.shadowOffsetY = 5
+				ctx.shadowBlur = 15
+				ctx.shadowColor = 'rgba(0, 0, 0, 0.5)'
+
+				// go for it
 				ctx.drawImage(image, 0, 0, 1920, 1920, 20, 20, 1000, 1000)
 				ctx.restore()
 
 				// todo: remove shareImageSrc
 				shareImageSrc.value = c.toDataURL('image/jpeg')
+				console.log('onload')
 			}
 
 			// add user text
@@ -171,6 +181,7 @@ export default defineComponent({
 
 			// todo: only trigger this when onload is solved
 			//return convertToImage(c.toDataURL('image/jpeg'))
+			console.log('finish')
 			return null
 		}
 
