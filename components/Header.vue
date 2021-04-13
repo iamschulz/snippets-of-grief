@@ -22,15 +22,6 @@
 	width: 100%;
 	margin-bottom: 1rem;
 
-	&::before {
-		content: '';
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		background: linear-gradient(180deg, var(--accent-blue) 0%, rgba(0, 0, 0, 0) 100%);
-		z-index: -1;
-	}
-
 	&__icon {
 		width: 2em;
 		height: 2em;
