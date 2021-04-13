@@ -25,6 +25,7 @@ export interface StoreData {
 	activeTextId: null | number
 	userText: string
 	randomIds: number[]
+	shareImage: null | File
 }
 
 export interface StoreInterface {
@@ -40,6 +41,8 @@ export interface StoreInterface {
 	setActiveTextId: Function
 	getUserText: Function
 	setUserText: Function
+	getShareImage: Function
+	setShareImage: Function
 }
 
 // eslint-disable-next-line @typescript-eslint/ban-types
@@ -70,6 +73,7 @@ export class Store {
 			activeTextId: Number(sessionStorage.getItem('activeTextId')) || null,
 			userText: !userText || userText === 'null' ? '' : userText,
 			randomIds: this.shuffle(cards.map((x) => x.id)),
+			shareImage: null,
 		}
 	}
 
@@ -137,6 +141,14 @@ export class Store {
 	public setUserText(content: string): void {
 		this.state.userText = content
 		this.persist('userText')
+	}
+
+	public getShareImage(): null | File {
+		return this.state.shareImage
+	}
+
+	public setShareImage(image: File): void {
+		this.state.shareImage = image
 	}
 }
 
