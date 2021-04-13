@@ -34,7 +34,9 @@
 				Deinen Text teilen
 			</button>
 			<button v-else-if="canShare" class="button elevation-1">Deinen Text teilen</button>
-			<a v-if="!canFileShare" href="" download class="button elevation-1">Text Herunterladen</a>
+			<button v-if="!canFileShare" download class="button elevation-1" @click.prevent="handleDownloadClick">
+				Text Herunterladen
+			</button>
 
 			<NuxtLink to="/" class="button elevation-1">Von vorne anfangen?</NuxtLink>
 		</div>
@@ -238,8 +240,18 @@ export default defineComponent({
 		}
 
 		const handleDownloadClick = (): void => {
-			// todo: this
-			// window.saveAs(blob, filename)
+			const a = document.createElement('a')
+			const url = URL.createObjectURL(shareImage.value)
+
+			a.href = url
+			a.download = 'foo.jpg'
+			document.body.appendChild(a)
+			a.click()
+
+			setTimeout(function () {
+				document.body.removeChild(a)
+				window.URL.revokeObjectURL(url)
+			}, 0)
 		}
 
 		return {
