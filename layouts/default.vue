@@ -56,12 +56,11 @@ $shadowColor: #000;
 	--accent-red: #cc9aa2;
 	--accent-blue: #7c9be8;
 	--accent-blend: rgba(174, 165, 206, 1);
-	--accent-gradient: linear-gradient(33deg, var(--accent-blue) 0%, var(--accent-blend) 66%, var(--accent-red) 100%);
 	--accent-gradient: radial-gradient(
 		farthest-corner at 100% 100%,
-		var(--accent-red) 0%,
-		var(--accent-blend) 50%,
-		var(--accent-blue) 100%
+		var(--accent-red) 5%,
+		var(--accent-blend) 30%,
+		var(--accent-blue) 70%
 	);
 	--accent-redContrast: #fff;
 	--font: sans-serif;

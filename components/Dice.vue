@@ -1,5 +1,13 @@
 <template>
-	<div class="dice" :data-value="diceValue" ref="diceEL" @click="rollDice" tabindex="0">
+	<div
+		class="dice"
+		:data-value="diceValue"
+		ref="diceEL"
+		@click="rollDice"
+		@keydown.enter="rollDice"
+		@keydown.space="rollDice"
+		tabindex="0"
+	>
 		<div class="dice__object">
 			<span v-for="(side, index) in content" :key="index" class="dice__face" :data-side="`dice-${index + 1}`">
 				{{ side.title }}
@@ -61,6 +69,14 @@ export default defineComponent({
 	padding-left: calc(var(--diceWidth) + 2rem);
 	perspective: 800px;
 	perspective-origin: 0 0;
+
+	&:focus {
+		outline: none;
+	}
+	&:focus-visible {
+		outline: 1px dotted #212121;
+		outline: 5px auto -webkit-focus-ring-color;
+	}
 
 	&__input {
 		display: none;

@@ -96,7 +96,7 @@ export default defineComponent({
 		border: 2px solid #888;
 		border-radius: var(--border-radius);
 		background-color: #ddd;
-		background-image: url('/cardCover-1920.jpg');
+		background-image: url('/cardCover-290.jpg');
 		background-size: cover;
 		background-position: center center;
 		z-index: 2;

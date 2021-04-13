@@ -1,3 +1,5 @@
+<template></template>
+
 <script lang="ts">
 import { defineComponent, inject, onMounted } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'

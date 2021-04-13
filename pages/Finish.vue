@@ -32,7 +32,7 @@
 
 			<ShareOptions />
 
-			<NuxtLink to="/">Von vorne anfangen?</NuxtLink>
+			<NuxtLink to="/" class="small">Von vorne anfangen?</NuxtLink>
 		</div>
 	</div>
 </template>

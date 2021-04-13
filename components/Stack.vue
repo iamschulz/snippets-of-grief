@@ -1,13 +1,17 @@
 <template>
 	<ul class="stack" :style="`--card-count: ${cardCount}`">
 		<div class="stack__shadow elevation-2"></div>
+		<!-- todo: add skiplink to next button -->
 		<li
 			class="stack__item"
 			v-for="(card, index) in content"
 			:key="card.id"
 			:data-is-active="card.id === getActiveId()"
 			:style="`--card-index: ${index}`"
-			@click="() => onActivate(card.id)"
+			@click="(e) => onActivate(e, card.id)"
+			@keydown.enter="(e) => onActivate(e, card.id)"
+			@keydown.space="(e) => onActivate(e, card.id)"
+			:tabindex="card.id === getActiveId() ? -1 : 0"
 		>
 			<Card :cardId="card.id" :index="index" />
 		</li>
@@ -26,7 +30,8 @@ export default defineComponent({
 		const cardCount = content.length
 
 		const getActiveId = () => store.getActiveCardId()
-		const onActivate = (id: null | number) => {
+		const onActivate = (e: Event, id: null | number) => {
+			;(e.target as HTMLElement).blur()
 			store.setActiveCardId(id)
 		}
 
@@ -96,6 +101,16 @@ export default defineComponent({
 		--stackWidth: 32.5rem;
 		--stackHeight: 13.75rem;
 		--activeTransform: translate(110%, 1em);
+
+		&__item {
+			&:focus {
+				outline: none;
+			}
+			&:focus-visible {
+				outline: 1px dotted #212121;
+				outline: 5px auto -webkit-focus-ring-color;
+			}
+		}
 	}
 }
 </style>
