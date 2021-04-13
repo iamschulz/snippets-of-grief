@@ -28,6 +28,13 @@ export default defineComponent({
 	font-display: fallback;
 }
 
+@font-face {
+	font-family: 'Inter';
+	src: url('../assets/Inter-Regular.woff2') format('woff2');
+	unicode-range: U+0020 —007F;
+	font-display: fallback;
+}
+
 $shadowColor: #000;
 
 @mixin elevation($level) {
@@ -44,7 +51,8 @@ $shadowColor: #000;
 
 :root {
 	--background: rgb(235, 242, 255);
-	--contrast: rgb(48, 48, 48);
+	--contrast: rgb(60, 60, 60);
+	--grey: rgb(109, 109, 109);
 	--accent-red: #cc9aa2;
 	--accent-blue: #93a5d1;
 	--accent-blend: rgba(174, 165, 206, 1);
@@ -58,16 +66,14 @@ $shadowColor: #000;
 }
 
 html {
-	font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial,
-		sans-serif;
-	font-size: clamp(1rem, 1.5vw, 1.8rem);
-	word-spacing: 0.0625rem;
+	font-family: 'Inter', 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue',
+		Arial, sans-serif;
+	font-size: clamp(1rem, 1.5vw, 1.3rem);
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
 	-moz-osx-font-smoothing: grayscale;
 	-webkit-font-smoothing: antialiased;
 	box-sizing: border-box;
-	background: var(--accent-blue);
 	height: 100%;
 	margin: 0;
 	padding: 0;
@@ -159,6 +165,13 @@ h6 {
 	.root > & {
 		line-height: 1.2;
 	}
+}
+
+p,
+li,
+details {
+	letter-spacing: 0.01875rem;
+	line-height: 1.4;
 }
 
 hr {
