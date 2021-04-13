@@ -6,11 +6,14 @@
 		</Header>
 		<div class="root">
 			<h2>{{ text.callToAction }} über…</h2>
+
 			<Card :cardId="card.id" :index="card.id" :open="true" :simple="true" />
-			<details class="content">
+
+			<details class="content text__help">
 				<summary>Du weißt nicht, wie du anfangen sollst?</summary>
 				<div v-html="helpText"></div>
 			</details>
+
 			<textarea class="content" ref="textAreaEl" @input="resize" v-model="userText" autofocus></textarea>
 
 			<transition name="pop-in">
@@ -80,4 +83,10 @@ export default defineComponent({
 })
 </script>
 
-<style></style>
+<style lang="scss">
+.text {
+	&__help {
+		margin: 2rem 0 1rem;
+	}
+}
+</style>

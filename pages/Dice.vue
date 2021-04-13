@@ -5,7 +5,7 @@
 			<template v-slot:icon><DiceIcon /></template>
 		</Header>
 		<div class="root">
-			<Dice />
+			<Dice class="dice" />
 			<transition name="pop-in">
 				<NuxtLink to="/Text" v-if="isTextSelected()" class="button elevation-1">Weiter</NuxtLink>
 			</transition>
@@ -41,6 +41,10 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.dice {
+	margin-top: 1rem;
+}
+
 .button {
 	z-index: 1;
 }

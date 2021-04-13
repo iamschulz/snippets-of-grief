@@ -8,7 +8,7 @@ export default {
 		meta: [
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
-			{ name: 'theme-color', content: '#93a5d1' },
+			{ name: 'theme-color', content: '#7c9be8' },
 		],
 		link: [{ rel: 'icon', type: 'image/x-icon', href: 'AppIcon.svg' }],
 	},
@@ -51,15 +51,15 @@ export default {
 			name: 'Snippets of Grief',
 			short_name: 'Snippets of Grief',
 			lang: 'de',
-			background_color: '#93a5d1',
-			theme_color: '#93a5d1',
+			background_color: '#7c9be8',
+			theme_color: '#7c9be8',
 			icon: {
 				source: 'static/icon.png',
 				fileName: 'icon.png',
 			},
 		},
 		meta: {
-			theme_color: '#93a5d1',
+			theme_color: '#7c9be8',
 		},
 	},
 

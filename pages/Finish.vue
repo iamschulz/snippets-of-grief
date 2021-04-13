@@ -30,15 +30,17 @@
 				</ul>
 			</div>
 
-			<button v-if="canFileShare" class="button elevation-1" @click.prevent="handleShareFileClick">
-				Deinen Text teilen
-			</button>
-			<button v-else-if="canShare" class="button elevation-1">Deinen Text teilen</button>
-			<button v-if="!canFileShare" download class="button elevation-1" @click.prevent="handleDownloadClick">
-				Text Herunterladen
-			</button>
+			<div class="finish__share">
+				<button v-if="canFileShare" class="button elevation-1" @click.prevent="handleShareFileClick">
+					Deinen Text teilen
+				</button>
+				<button v-else-if="canShare" class="button elevation-1">Deinen Text teilen</button>
+				<button v-if="!canFileShare" download class="button elevation-1" @click.prevent="handleDownloadClick">
+					Text Herunterladen
+				</button>
+			</div>
 
-			<NuxtLink to="/" class="button elevation-1">Von vorne anfangen?</NuxtLink>
+			<NuxtLink to="/">Von vorne anfangen?</NuxtLink>
 		</div>
 	</div>
 </template>
@@ -64,8 +66,6 @@ export default defineComponent({
 			navigator.canShare({
 				files: [new File([], 'image.jpeg', { type: 'image/jpeg' })],
 			})
-
-		console.log('foo', card)
 
 		const wrapText = async (
 			ctx: CanvasRenderingContext2D,
@@ -244,7 +244,7 @@ export default defineComponent({
 			const url = URL.createObjectURL(shareImage.value)
 
 			a.href = url
-			a.download = 'foo.jpg'
+			a.download = 'Snippets of Grief.jpg'
 			document.body.appendChild(a)
 			a.click()
 
@@ -274,11 +274,25 @@ export default defineComponent({
 </script>
 
 <style lang="scss" scoped>
+.finish {
+	&__share {
+		width: 100%;
+		text-align: center;
+
+		> * {
+			display: inline-block;
+
+			+ * {
+				margin-left: 1rem;
+			}
+		}
+	}
+}
+
 .user-text {
 	display: grid;
 	place-items: top center;
 	grid-gap: 1rem;
-	gap: 1rem;
 	padding: 1rem;
 	font-size: 1rem;
 	background: var(--background);
@@ -298,7 +312,7 @@ export default defineComponent({
 	.user-text {
 		grid-template-columns: 15.75rem 1fr;
 		padding: 1rem 5rem 2rem;
-		gap: 3rem;
+		grid-gap: 3rem;
 
 		.card {
 			position: sticky;

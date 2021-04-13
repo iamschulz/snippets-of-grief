@@ -54,9 +54,15 @@ $shadowColor: #000;
 	--contrast: rgb(60, 60, 60);
 	--grey: rgb(109, 109, 109);
 	--accent-red: #cc9aa2;
-	--accent-blue: #93a5d1;
+	--accent-blue: #7c9be8;
 	--accent-blend: rgba(174, 165, 206, 1);
 	--accent-gradient: linear-gradient(33deg, var(--accent-blue) 0%, var(--accent-blend) 66%, var(--accent-red) 100%);
+	--accent-gradient: radial-gradient(
+		farthest-corner at 100% 100%,
+		var(--accent-red) 0%,
+		var(--accent-blend) 50%,
+		var(--accent-blue) 100%
+	);
 	--accent-redContrast: #fff;
 	--font: sans-serif;
 	--accent-redFont: 'Accent', cursive;
@@ -96,16 +102,15 @@ body {
 }
 
 .root {
-	display: flex;
-	flex-direction: column;
+	display: grid;
 	justify-content: center;
 	align-items: center;
-	gap: 1em;
+	grid-gap: 1.5em;
 	padding: 0 1rem 5rem;
 	background: var(--background);
 
-	> * + * {
-		margin: 0;
+	> * {
+		justify-self: center;
 	}
 }
 
@@ -161,6 +166,7 @@ h6 {
 	@extend .cursive;
 	font-weight: normal;
 	padding: 0 0.5ch;
+	margin-bottom: 0;
 
 	.root > & {
 		line-height: 1.2;
@@ -174,14 +180,37 @@ details {
 	line-height: 1.4;
 }
 
+a {
+	color: inherit;
+}
+
 hr {
 	width: 100%;
-	height: 0.3125rem;
+	height: 0.125rem;
 	background: var(--accent-gradient);
+	border: none;
 }
 
 summary {
 	cursor: pointer;
+
+	&::marker {
+		color: var(--accent-blue);
+	}
+
+	+ * {
+		position: relative;
+		padding-left: 1rem;
+
+		&::before {
+			content: '';
+			position: absolute;
+			left: 0.225rem;
+			width: 0.125rem;
+			height: 100%;
+			background: var(--accent-gradient);
+		}
+	}
 }
 
 .small {

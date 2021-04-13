@@ -108,7 +108,7 @@ export default defineComponent({
 		position: absolute;
 		display: grid;
 		place-items: center;
-		gap: 1em;
+		grid-gap: 1em;
 		text-align: center;
 		font-family: sans-serif;
 		color: #333;
