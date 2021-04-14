@@ -9,6 +9,7 @@ export default {
 			{ charset: 'utf-8' },
 			{ name: 'viewport', content: 'width=device-width, initial-scale=1' },
 			{ name: 'theme-color', content: '#7c9be8' },
+			{ name: 'link', rel: 'preload', as: 'image', href: 'static/cardCover-290.jpg' },
 		],
 		link: [{ rel: 'icon', type: 'image/x-icon', href: 'AppIcon.svg' }],
 	},
@@ -60,9 +61,6 @@ export default {
 		},
 		meta: {
 			theme_color: '#7c9be8',
-		},
-		workbox: {
-			preCaching: ['static/cardCover-290.jpg'],
 		},
 	},
 
