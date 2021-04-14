@@ -8,9 +8,9 @@
 	>
 		<img
 			class="card__content"
-			:src="isActive() ? `/cards/1920/card${card.id}.jpg` : '#'"
+			:src="isActive() || !lazyLoad ? `/cards/1920/card${card.id}.jpg` : '#'"
 			:data-src="`/cards/1920/card${card.id}.jpg`"
-			alt="card.alt"
+			:alt="card.alt"
 		/>
 	</article>
 </template>
@@ -35,6 +35,10 @@ export default defineComponent({
 		simple: {
 			type: Boolean,
 			default: false,
+		},
+		lazyLoad: {
+			type: Boolean,
+			default: true,
 		},
 	},
 

@@ -23,7 +23,7 @@ export default defineComponent({
 			maxWidth: number
 			height: number
 		}> => {
-			ctx.font = '50px Arial'
+			ctx.font = '50px Inter'
 			var lines = text.split('\n')
 			let lineCount = lines.length
 			let maxWidth = 0

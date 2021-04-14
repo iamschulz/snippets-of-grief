@@ -13,7 +13,7 @@
 			@keydown.space="(e) => onActivate(e, card.id)"
 			:tabindex="card.id === getActiveId() ? -1 : 0"
 		>
-			<Card :cardId="card.id" :index="index" />
+			<Card :cardId="card.id" :index="index" :lazyLoad="index !== content.length - 1" />
 		</li>
 	</ul>
 </template>

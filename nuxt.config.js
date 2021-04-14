@@ -61,6 +61,9 @@ export default {
 		meta: {
 			theme_color: '#7c9be8',
 		},
+		workbox: {
+			preCaching: ['static/cardCover-290.jpg'],
+		},
 	},
 
 	// Build Configuration: https://go.nuxtjs.dev/config-build
