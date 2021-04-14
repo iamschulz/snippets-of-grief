@@ -63,8 +63,7 @@ export default {
 			theme_color: '#98afe9',
 		},
 		workbox: {
-			preCaching: ['static/cardCover-290.jpg'],
-			debuug: true,
+			preCaching: ['/cardCover-290.jpg'],
 		},
 	},
 
