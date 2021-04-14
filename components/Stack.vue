@@ -1,7 +1,6 @@
 <template>
 	<ul class="stack" :style="`--card-count: ${cardCount}`">
 		<div class="stack__shadow elevation-2"></div>
-		<!-- todo: add skiplink to next button -->
 		<li
 			class="stack__item"
 			v-for="(card, index) in content"
@@ -14,7 +13,6 @@
 			:tabindex="card.id === getActiveId() ? -1 : 0"
 		>
 			<Card :cardId="card.id" :index="index" :lazyLoad="index !== content.length - 1" />
-			<!-- todo: remove focus border when tapping -->
 			<!-- todo: preload card cover -->
 		</li>
 	</ul>
@@ -81,6 +79,14 @@ export default defineComponent({
 		height: 11.25rem;
 		width: 18.125rem;
 
+		&:focus {
+			outline: none;
+		}
+		&:focus-visible {
+			outline: 1px dotted #212121;
+			outline: 5px auto -webkit-focus-ring-color;
+		}
+
 		&:not([data-is-active='true']):hover {
 			transform: translate(-0.5ch, -3ch);
 		}
@@ -103,16 +109,6 @@ export default defineComponent({
 		--stackWidth: 32.5rem;
 		--stackHeight: 13.75rem;
 		--activeTransform: translate(110%, 1em);
-
-		&__item {
-			&:focus {
-				outline: none;
-			}
-			&:focus-visible {
-				outline: 1px dotted #212121;
-				outline: 5px auto -webkit-focus-ring-color;
-			}
-		}
 	}
 }
 </style>
