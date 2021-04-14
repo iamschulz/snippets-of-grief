@@ -14,7 +14,7 @@
 				<div v-html="helpText"></div>
 			</details>
 
-			<textarea class="content" ref="textAreaEl" @input="resize" v-model="userText" autofocus></textarea>
+			<textarea class="content" ref="textAreaEl" @input="resize" v-model="userText"></textarea>
 
 			<transition name="pop-in">
 				<NuxtLink v-if="isReady" to="/Finish" class="button elevation-1">Fertig?</NuxtLink>
