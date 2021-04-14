@@ -25,7 +25,6 @@ export default defineComponent({
 		const cardId = store.getActiveCardId()
 		const card = store.getCardById(cardId)
 		const shareTitle = 'Snippets of Grief'
-		const shareText = `${card?.alt} - ${text.title}:\n#SnippetsOfGrief\n\n${userText}`
 
 		const canShare = process.browser && navigator.canShare
 		const canFileShare =
@@ -49,7 +48,7 @@ export default defineComponent({
 				.share({
 					files: [shareImage],
 					title: shareTitle,
-					text: shareText,
+					text: `${card?.alt} - ${text.title}:\n#SnippetsOfGrief`,
 					url: `${location.protocol}//${location.host}`,
 				})
 				.catch((error) => console.error('Sharing File failed', error))
@@ -61,7 +60,7 @@ export default defineComponent({
 			navigator
 				.share({
 					title: shareTitle,
-					text: shareText,
+					text: `${card?.alt} - ${text.title}:\n#SnippetsOfGrief\n\n${userText}`,
 					url: `${location.protocol}//${location.host}`,
 				})
 				.catch((error) => console.error('Sharing failed', error))

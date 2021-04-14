@@ -2,8 +2,10 @@
 	<footer class="footer">
 		<div class="content footer__inner">
 			<div class="footer__content">
-				Snippets of Grief &copy; {{ new Date().getFullYear() }}
+				<a href="/">Snippets of Grief</a>
+				&copy; {{ new Date().getFullYear() }}
 				<a href="http://fräulein-schwarz.de" target="_blank" rel="noopener">Wiebke Jahns</a>
+				<!-- todo: &bull; <a href="">App installieren</a> -->
 			</div>
 		</div>
 	</footer>
