@@ -32,7 +32,7 @@
 
 			<ShareOptions />
 
-			<NuxtLink to="/" class="small">Von vorne anfangen?</NuxtLink>
+			<NuxtLink to="/" class="small user-text__retry">Von vorne anfangen?</NuxtLink>
 		</div>
 	</div>
 </template>
@@ -85,11 +85,16 @@ export default defineComponent({
 	&__card {
 		margin-top: 2rem;
 	}
+
 	&__text {
 		margin-top: 1rem;
 		display: grid;
 		align-items: center;
 		white-space: pre-wrap;
+	}
+
+	&__retry {
+		text-align: center;
 	}
 }
 
