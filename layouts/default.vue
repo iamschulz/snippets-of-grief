@@ -149,6 +149,7 @@ textarea {
 	background: none;
 	min-height: 8em;
 	border: 2px solid var(--accent-red);
+	border-image-source: var(--accent-gradient);
 	border-image-slice: 1;
 	font-size: 1.2rem;
 	color: var(--contrast);
