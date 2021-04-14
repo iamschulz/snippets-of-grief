@@ -54,8 +54,8 @@ $shadowColor: #000;
 	--contrast: rgb(60, 60, 60);
 	--grey: rgb(109, 109, 109);
 	--accent-red: #cc9aa2;
-	--accent-blue: #7c9be8;
-	--accent-blend: rgba(174, 165, 206, 1);
+	--accent-blue: #98afe9;
+	--accent-blend: rgb(196, 163, 180);
 	--accent-gradient: radial-gradient(
 		farthest-corner at 100% 100%,
 		var(--accent-red) 5%,
@@ -126,7 +126,7 @@ body {
 
 .button {
 	@extend .cursive;
-	background-color: var(--accent-red);
+	background-color: var(--accent-blue);
 	background-image: var(--accent-gradient);
 	background-position: 100% 100%;
 	background-size: 150%;
