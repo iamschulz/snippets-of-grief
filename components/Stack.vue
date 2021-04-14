@@ -14,6 +14,8 @@
 			:tabindex="card.id === getActiveId() ? -1 : 0"
 		>
 			<Card :cardId="card.id" :index="index" :lazyLoad="index !== content.length - 1" />
+			<!-- todo: remove focus border when tapping -->
+			<!-- todo: preload card cover -->
 		</li>
 	</ul>
 </template>

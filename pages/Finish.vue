@@ -1,5 +1,6 @@
 <template>
 	<div>
+		<!-- todo: stability problems when SSR'd -->
 		<Header>
 			<template v-slot:title>Weiter machen</template>
 		</Header>

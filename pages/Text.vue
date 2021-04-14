@@ -14,6 +14,7 @@
 				<div v-html="helpText"></div>
 			</details>
 
+			<!-- todo: write label -->
 			<textarea class="content" ref="textAreaEl" @input="resize" v-model="userText"></textarea>
 
 			<transition name="pop-in">

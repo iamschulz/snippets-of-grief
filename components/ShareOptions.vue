@@ -1,6 +1,5 @@
 <template>
 	<div class="share-options">
-		<ShareImage />
 		<button v-if="canFileShare" class="button elevation-1" @click.prevent="handleShareFileClick">
 			Deinen Text teilen
 		</button>
@@ -8,6 +7,7 @@
 		<button v-if="!canFileShare" download class="button elevation-1" @click.prevent="handleDownloadClick">
 			Text Herunterladen
 		</button>
+		<ShareImage />
 	</div>
 </template>
 
@@ -24,6 +24,8 @@ export default defineComponent({
 		const userText = store.getUserText()
 		const cardId = store.getActiveCardId()
 		const card = store.getCardById(cardId)
+		const shareTitle = 'Snippets of Grief'
+		const shareText = `${card.alt} - ${text.title}:\n#SnippetsOfGrief\n\n${userText}`
 
 		const canShare = navigator.canShare
 		const canFileShare =
@@ -43,8 +45,8 @@ export default defineComponent({
 			navigator
 				.share({
 					files: [shareImage],
-					title: 'Snippets of Grief',
-					text: `${text.title} zum Thema ${card.alt}`,
+					title: shareTitle,
+					text: shareText,
 					url: `${location.protocol}//${location.host}`,
 				})
 				.catch((error) => console.error('Sharing File failed', error))
@@ -53,8 +55,8 @@ export default defineComponent({
 		const handleShareClick = (): void => {
 			navigator
 				.share({
-					title: 'Snippets of Grief',
-					text: `${text.title} zum Thema ${card.alt}:\n\n${userText}`,
+					title: shareTitle,
+					text: shareText,
 					url: `${location.protocol}//${location.host}`,
 				})
 				.catch((error) => console.error('Sharing failed', error))
