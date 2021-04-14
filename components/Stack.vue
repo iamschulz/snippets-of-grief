@@ -1,21 +1,24 @@
 <template>
-	<ul class="stack" :style="`--card-count: ${cardCount}`">
-		<div class="stack__shadow elevation-2"></div>
-		<li
-			class="stack__item"
-			v-for="(card, index) in content"
-			:key="card.id"
-			:data-is-active="card.id === getActiveId()"
-			:style="`--card-index: ${index}`"
-			@click="(e) => onActivate(e, card.id)"
-			@keydown.enter="(e) => onActivate(e, card.id)"
-			@keydown.space="(e) => onActivate(e, card.id)"
-			:tabindex="card.id === getActiveId() ? -1 : 0"
-		>
-			<Card :cardId="card.id" :index="index" :lazyLoad="index !== content.length - 1" />
-			<!-- todo: preload card cover -->
-		</li>
-	</ul>
+	<div>
+		<a :href="`#card-${content.length - 1}`" class="skip-link small stack__skip">Zur letzten Karte springen</a>
+		<ul class="stack" :style="`--card-count: ${cardCount}`">
+			<div class="stack__shadow elevation-2"></div>
+			<li
+				class="stack__item"
+				v-for="(card, index) in content"
+				:key="card.id"
+				:id="`card-${index}`"
+				:data-is-active="card.id === getActiveId()"
+				:style="`--card-index: ${index}`"
+				@click="(e) => onActivate(e, card.id)"
+				@keydown.enter="(e) => onActivate(e, card.id)"
+				@keydown.space="(e) => onActivate(e, card.id)"
+				:tabindex="card.id === getActiveId() ? -1 : 0"
+			>
+				<Card :cardId="card.id" :index="index" :lazyLoad="index !== content.length - 1" />
+			</li>
+		</ul>
+	</div>
 </template>
 
 <script lang="ts">
@@ -59,6 +62,11 @@ export default defineComponent({
 	list-style: none;
 	width: var(--stackWidth);
 	height: var(--stackHeight);
+
+	&__skip {
+		position: absolute;
+		margin-top: -1rem;
+	}
 
 	&__shadow {
 		position: absolute;

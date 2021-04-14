@@ -145,6 +145,22 @@ body {
 	}
 }
 
+.skip-link {
+	&:not(:focus) {
+		clip: rect(1px, 1px, 1px, 1px);
+		pointer-events: none;
+		position: absolute !important;
+		height: 1px !important;
+		width: 1px !important;
+		overflow: hidden;
+		padding: 0px !important;
+		border-width: 0px !important;
+		border-style: initial !important;
+		border-color: initial !important;
+		border-image: initial !important;
+	}
+}
+
 textarea {
 	background: none;
 	min-height: 8em;

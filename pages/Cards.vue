@@ -5,7 +5,6 @@
 			<template v-slot:icon><CardsIcon /></template>
 		</Header>
 		<div class="root">
-			<!-- todo: add skiplink to next button -->
 			<Stack />
 			<transition name="pop-in">
 				<NuxtLink to="/dice" v-if="isCardSelected()" class="button elevation-1">Weiter</NuxtLink>
