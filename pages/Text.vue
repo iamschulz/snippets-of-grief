@@ -7,19 +7,21 @@
 		<div class="root">
 			<h2>{{ text.callToAction }} über…</h2>
 
-			<Card :cardId="card.id" :index="card.id" :open="true" :simple="true" />
+			<Card class="text__card" :cardId="card.id" :index="card.id" :open="true" :simple="true" />
 
-			<details class="content text__help">
-				<summary>Du weißt nicht, wie du anfangen sollst?</summary>
-				<div v-html="helpText"></div>
-			</details>
-
-			<!-- todo: write label -->
-			<textarea class="content" ref="textAreaEl" @input="resize" v-model="userText"></textarea>
+			<form>
+				<label for="userText" class="small">Schreib deinen Text:</label>
+				<textarea class="content" id="userText" ref="textAreaEl" @input="resize" v-model="userText"></textarea>
+			</form>
 
 			<transition name="pop-in">
 				<NuxtLink v-if="isReady" to="/Finish" class="button elevation-1">Fertig?</NuxtLink>
 			</transition>
+
+			<details class="content">
+				<summary>Du weißt nicht, wie du anfangen sollst?</summary>
+				<div v-html="helpText"></div>
+			</details>
 		</div>
 	</div>
 </template>
@@ -86,8 +88,8 @@ export default defineComponent({
 
 <style lang="scss">
 .text {
-	&__help {
-		margin: 2rem 0 1rem;
+	&__card {
+		margin-bottom: 1rem;
 	}
 }
 </style>

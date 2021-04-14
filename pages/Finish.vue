@@ -49,6 +49,8 @@ export default defineComponent({
 		const store = inject('store') as StoreInterface
 		const userText = store.getUserText()
 		const cardId = store.getActiveCardId()
+		const texts = store.getTexts()
+		const text = texts[store.getActiveTextId() || 0]
 
 		const userTextEl = ref<HTMLElement | null>(null)
 
@@ -56,6 +58,7 @@ export default defineComponent({
 			userText,
 			cardId,
 			userTextEl,
+			text,
 		}
 	},
 
@@ -92,7 +95,7 @@ export default defineComponent({
 		padding: 1rem 5rem 2rem;
 		grid-gap: 3rem;
 
-		.card {
+		&__card {
 			position: sticky;
 			top: 4.375rem;
 		}

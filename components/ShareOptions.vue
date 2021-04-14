@@ -25,16 +25,19 @@ export default defineComponent({
 		const cardId = store.getActiveCardId()
 		const card = store.getCardById(cardId)
 		const shareTitle = 'Snippets of Grief'
-		const shareText = `${card.alt} - ${text.title}:\n#SnippetsOfGrief\n\n${userText}`
+		const shareText = `${card?.alt} - ${text.title}:\n#SnippetsOfGrief\n\n${userText}`
 
-		const canShare = navigator.canShare
+		const canShare = process.browser && navigator.canShare
 		const canFileShare =
+			process.browser &&
 			navigator.canShare &&
 			navigator.canShare({
 				files: [new File([], 'image.jpeg', { type: 'image/jpeg' })],
 			})
 
 		const handleShareFileClick = (): void => {
+			if (!process.browser) return
+
 			const shareImage = store.getShareImage()
 			if (!shareImage) {
 				console.warn('no share image', shareImage)
@@ -53,6 +56,8 @@ export default defineComponent({
 		}
 
 		const handleShareClick = (): void => {
+			if (!process.browser) return
+
 			navigator
 				.share({
 					title: shareTitle,
@@ -63,6 +68,8 @@ export default defineComponent({
 		}
 
 		const handleDownloadClick = (): void => {
+			if (!process.browser) return
+
 			const shareImage = store.getShareImage()
 			const a = document.createElement('a')
 			const url = URL.createObjectURL(shareImage)

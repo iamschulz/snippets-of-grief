@@ -1,4 +1,6 @@
-<template></template>
+<template>
+	<div class="root"><!-- todo: convert to functional component --></div>
+</template>
 
 <script lang="ts">
 import { defineComponent, inject, onMounted } from '@nuxtjs/composition-api'
@@ -158,3 +160,9 @@ export default defineComponent({
 	},
 })
 </script>
+
+<style lang="scss" scoped>
+.root {
+	display: none !important;
+}
+</style>
