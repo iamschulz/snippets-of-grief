@@ -2,7 +2,7 @@
 	<div
 		class="dice"
 		:data-value="diceValue"
-		ref="diceEL"
+		:data-rolling="isRolling"
 		@click="rollDice"
 		@keydown.enter="rollDice"
 		@keydown.space="rollDice"
@@ -17,6 +17,7 @@
 </template>
 
 <script lang="ts">
+// todo: this can still throw up when reloading
 import { defineComponent, inject, ref } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
 
@@ -25,15 +26,16 @@ export default defineComponent({
 		const store = inject('store') as StoreInterface
 		const content = store.getTexts()
 		const diceValue = ref(0)
-		const diceEL = ref<HTMLElement | null>(null)
+		const isRolling = ref<'rolling' | 'start' | null>(null)
+
 		const rollDice = () => {
 			diceValue.value = Math.ceil(Math.random() * 6)
 
-			diceEL.value?.setAttribute('data-rolling', 'start')
+			isRolling.value = 'start'
 			setTimeout(() => {
-				diceEL.value?.setAttribute('data-rolling', 'rolling')
+				isRolling.value = 'rolling'
 				setTimeout(() => {
-					diceEL.value?.removeAttribute('data-rolling')
+					isRolling.value = null
 					store.setActiveTextId(diceValue.value - 1)
 				}, 2000)
 			}, 1000)
@@ -41,9 +43,9 @@ export default defineComponent({
 
 		return {
 			content,
-			diceEL,
 			diceValue,
 			rollDice,
+			isRolling,
 		}
 	},
 })

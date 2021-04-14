@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<!-- todo: stability problems when SSR'd -->
 		<Header>
 			<template v-slot:title>Weiter machen</template>
 		</Header>
@@ -39,6 +38,7 @@
 </template>
 
 <script lang="ts">
+// todo: this can still throw up when reloading
 import { defineComponent, inject, ref } from '@nuxtjs/composition-api'
 import { StoreInterface } from '@/store/store'
 import Card from '@/components/Card.vue'
@@ -51,6 +51,10 @@ export default defineComponent({
 		const cardId = store.getActiveCardId()
 		const texts = store.getTexts()
 		const text = texts[store.getActiveTextId() || 0]
+
+		if (process.browser && (!cardId || !store.getActiveTextId() || !userText)) {
+			window.location.href = '/'
+		}
 
 		const userTextEl = ref<HTMLElement | null>(null)
 

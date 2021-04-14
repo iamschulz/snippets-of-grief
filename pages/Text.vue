@@ -46,15 +46,17 @@ export default defineComponent({
 		})
 
 		if (store.getActiveCardId() === null) {
-			store.setActiveCardId(1)
+			const randomCardId = Math.ceil(Math.random() * store.getCards().length)
+			store.setActiveCardId(randomCardId)
 		}
 
 		if (store.getActiveTextId() === null) {
-			store.setActiveTextId(0)
+			const randomTextId = Math.floor(Math.random() * store.getTexts().length)
+			store.setActiveTextId(randomTextId)
 		}
 
-		const card = cards[store.getActiveCardId() - 1 || 0] // todo: use random item
-		const text = texts[store.getActiveTextId() || 0] // todo: use random item
+		const card = cards[store.getActiveCardId() - 1]
+		const text = texts[store.getActiveTextId()]
 
 		const helpText = computed(() => '<p>' + text.help.replace(/(?:\r\n|\r|\n)/g, '</p><p>') + '</p>')
 
