@@ -218,7 +218,18 @@ hr {
 }
 
 summary {
+	position: relative;
 	cursor: pointer;
+
+	&::before {
+		content: '';
+		position: absolute;
+		right: 0;
+		bottom: -0.375rem;
+		width: calc(100% - 0.225rem);
+		height: 0.125rem;
+		background: var(--accent-gradient);
+	}
 
 	&::marker {
 		color: var(--accent-blue);
@@ -227,13 +238,15 @@ summary {
 	+ * {
 		position: relative;
 		padding-left: 1rem;
+		padding-bottom: 0.001rem;
 
 		&::before {
 			content: '';
 			position: absolute;
+			top: -0.625rem;
 			left: 0.225rem;
 			width: 0.125rem;
-			height: 100%;
+			height: calc(100% + 0.625rem);
 			background: var(--accent-gradient);
 		}
 	}

@@ -38,7 +38,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .root {
 	padding-top: 1.5rem;
 }
