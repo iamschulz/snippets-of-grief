@@ -4,12 +4,14 @@
 			<template v-slot:title>Weiter machen</template>
 		</Header>
 		<div class="root">
-			<section class="user-text" ref="userTextEl">
-				<div class="user-text__card">
-					<Card v-if="cardId" :cardId="cardId" :open="true" :simple="true" />
-				</div>
-				<article class="user-text__text">{{ userText }}</article>
-			</section>
+			<ClientOnly>
+				<section class="user-text" ref="userTextEl">
+					<div class="user-text__card">
+						<Card v-if="cardId" :cardId="cardId" :open="true" :simple="true" />
+					</div>
+					<article class="user-text__text">{{ userText }}</article>
+				</section>
+			</ClientOnly>
 			<hr />
 			<div class="content">
 				<h2>Was passiert nach dem Schreiben?</h2>
@@ -30,15 +32,15 @@
 				</ul>
 			</div>
 
-			<ShareOptions />
-
+			<ClientOnly>
+				<ShareOptions />
+			</ClientOnly>
 			<NuxtLink to="/" class="small user-text__retry">Von vorne anfangen?</NuxtLink>
 		</div>
 	</div>
 </template>
 
 <script lang="ts">
-// todo: this can still throw up when reloading
 import { defineComponent, inject, ref } from '@nuxtjs/composition-api'
 import { StoreInterface } from '~/storeObject/store'
 import Card from '@/components/Card.vue'
