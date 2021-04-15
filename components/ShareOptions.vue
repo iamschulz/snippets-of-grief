@@ -3,7 +3,9 @@
 		<button v-if="canFileShare" class="button elevation-1" @click.prevent="handleShareFileClick">
 			Deinen Text teilen
 		</button>
-		<button v-else-if="canShare" class="button elevation-1">Deinen Text teilen</button>
+		<button v-else-if="canShare" class="button elevation-1" @click.prevent="handleShareClick">
+			Deinen Text teilen
+		</button>
 		<button v-if="!canFileShare" download class="button elevation-1" @click.prevent="handleDownloadClick">
 			Text Herunterladen
 		</button>
@@ -67,6 +69,7 @@ export default defineComponent({
 		}
 
 		const handleDownloadClick = (): void => {
+			console.log('bar')
 			if (!process.browser) return
 
 			const shareImage = store.getShareImage()

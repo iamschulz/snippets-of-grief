@@ -96,6 +96,7 @@ export default defineComponent({
 	}
 
 	&__retry {
+		display: inline-block;
 		text-align: center;
 	}
 }
