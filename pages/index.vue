@@ -1,6 +1,7 @@
 <template lang="html">
 	<div>
 		<!-- todo: screenreader test -->
+		<!-- todo: update content -->
 		<Header>
 			<template v-slot:title> Snippets of Grief </template>
 			<template v-slot:icon><AppIcon /></template>

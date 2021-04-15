@@ -7,19 +7,28 @@
 		@keydown.enter="rollDice"
 		@keydown.space="rollDice"
 		tabindex="0"
+		aria-live="polite"
+		aria-label="Würfel - Klicken zum würfeln"
 	>
 		<div class="dice__object">
-			<span v-for="(side, index) in content" :key="index" class="dice__face" :data-side="`dice-${index + 1}`">
+			<span
+				v-for="(side, index) in content"
+				:key="index"
+				class="dice__face"
+				:data-side="`dice-${index + 1}`"
+				:aria-hidden="diceValue - 1 !== index"
+			>
 				{{ side.title }}
 			</span>
 		</div>
+		<span v-if="activeText" class="visually-hidden">gewürfelter Wert: {{ activeText.title }}</span>
 	</div>
 </template>
 
 <script lang="ts">
 // todo: this can still throw up when reloading
 import { defineComponent, inject, ref } from '@nuxtjs/composition-api'
-import { StoreInterface } from '~/storeObject/store'
+import { StoreInterface, Text } from '~/storeObject/store'
 
 export default defineComponent({
 	setup() {
@@ -27,6 +36,7 @@ export default defineComponent({
 		const content = store.getTexts()
 		const diceValue = ref(0)
 		const isRolling = ref<'rolling' | 'start' | null>(null)
+		const activeText = ref<Text | null>(null)
 
 		const rollDice = () => {
 			diceValue.value = Math.ceil(Math.random() * 6)
@@ -37,6 +47,7 @@ export default defineComponent({
 				setTimeout(() => {
 					isRolling.value = null
 					store.setActiveTextId(diceValue.value - 1)
+					activeText.value = store.getTexts()[diceValue.value - 1]
 				}, 2000)
 			}, 1000)
 		}
@@ -46,6 +57,7 @@ export default defineComponent({
 			diceValue,
 			rollDice,
 			isRolling,
+			activeText,
 		}
 	},
 })

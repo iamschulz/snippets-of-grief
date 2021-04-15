@@ -18,12 +18,15 @@
 				<Card :cardId="card.id" :index="index" :lazyLoad="index !== content.length - 1" />
 			</li>
 		</ul>
+		<span aria-live="polite" class="visually-hidden">
+			<span v-if="activeCard && activeCard.alt"> Aktive Karte: {{ activeCard.alt }} </span>
+		</span>
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject } from '@nuxtjs/composition-api'
-import { StoreInterface } from '~/storeObject/store'
+import { defineComponent, inject, ref } from '@nuxtjs/composition-api'
+import { StoreInterface, Card as CardType } from '~/storeObject/store'
 import Card from './Card.vue'
 
 export default defineComponent({
@@ -38,10 +41,13 @@ export default defineComponent({
 			store.setActiveCardId(id)
 		}
 
+		const activeCard = ref<CardType>(store.getCardById(getActiveId()))
+
 		return {
 			cardCount,
 			content,
 			getActiveId,
+			activeCard,
 			onActivate,
 		}
 	},
