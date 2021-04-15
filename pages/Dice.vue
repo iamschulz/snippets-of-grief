@@ -17,7 +17,7 @@
 import Dice from '../components/Dice.vue'
 import DiceIcon from '@/assets/DiceIcon.svg?inline'
 import { defineComponent, inject } from '@nuxtjs/composition-api'
-import { StoreInterface } from '@/store/store'
+import { StoreInterface } from '@/storeObject/store'
 
 export default defineComponent({
 	setup() {

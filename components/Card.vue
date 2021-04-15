@@ -17,7 +17,7 @@
 
 <script lang="ts">
 import { defineComponent, inject, computed, onMounted, ref } from '@nuxtjs/composition-api'
-import { StoreInterface } from '@/store/store'
+import { StoreInterface } from '~/storeObject/store'
 
 export default defineComponent({
 	props: {

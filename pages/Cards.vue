@@ -17,7 +17,7 @@
 import Stack from '@/components/Stack.vue'
 import CardsIcon from '@/assets/CardsIcon.svg?inline'
 import { defineComponent, inject } from '@nuxtjs/composition-api'
-import { StoreInterface } from '@/store/store'
+import { StoreInterface } from '@/storeObject/store'
 
 export default defineComponent({
 	setup() {

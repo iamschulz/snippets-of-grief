@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import { defineComponent, inject } from '@nuxtjs/composition-api'
-import { StoreInterface } from '@/store/store'
+import { StoreInterface } from '~/storeObject/store'
 import Card from './Card.vue'
 
 export default defineComponent({

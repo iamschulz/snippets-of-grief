@@ -7,7 +7,7 @@
 
 <script lang="ts">
 import { defineComponent } from '@nuxtjs/composition-api'
-import { store } from '@/store/store'
+import { store } from '~/storeObject/store'
 import Footer from '@/components/Footer.vue'
 
 export default defineComponent({

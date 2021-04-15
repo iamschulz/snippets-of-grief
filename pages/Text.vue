@@ -28,7 +28,7 @@
 
 <script lang="ts">
 import { computed, defineComponent, inject, ref, watch } from '@nuxtjs/composition-api'
-import { StoreInterface } from '@/store/store'
+import { StoreInterface } from '@/storeObject/store'
 import Card from '@/components/Card.vue'
 import PenIcon from '@/assets/PenIcon.svg?inline'
 

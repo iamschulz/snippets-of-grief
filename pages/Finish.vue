@@ -40,7 +40,7 @@
 <script lang="ts">
 // todo: this can still throw up when reloading
 import { defineComponent, inject, ref } from '@nuxtjs/composition-api'
-import { StoreInterface } from '@/store/store'
+import { StoreInterface } from '~/storeObject/store'
 import Card from '@/components/Card.vue'
 import ShareOptions from '@/components/ShareOptions.vue'
 

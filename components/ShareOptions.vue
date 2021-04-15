@@ -13,7 +13,7 @@
 
 <script lang="ts">
 import { defineComponent, inject } from '@vue/composition-api'
-import { StoreInterface } from '@/store/store'
+import { StoreInterface } from '~/storeObject/store'
 import ShareImage from '@/components/ShareImage.vue'
 
 export default defineComponent({
