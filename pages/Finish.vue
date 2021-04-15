@@ -41,7 +41,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, ref } from '@nuxtjs/composition-api'
+import { defineComponent, inject, ref, nextTick } from '@nuxtjs/composition-api'
 import { StoreInterface } from '~/storeObject/store'
 import Card from '@/components/Card.vue'
 import ShareOptions from '@/components/ShareOptions.vue'
@@ -54,9 +54,11 @@ export default defineComponent({
 		const texts = store.getTexts()
 		const text = texts[store.getActiveTextId() || 0]
 
-		if (process.browser && (!cardId || !store.getActiveTextId() || !userText)) {
-			window.location.href = '/'
-		}
+		nextTick(() => {
+			if (process.browser && (!cardId || !store.getActiveTextId() || !userText)) {
+				window.location.href = '/'
+			}
+		})
 
 		const userTextEl = ref<HTMLElement | null>(null)
 
@@ -97,7 +99,6 @@ export default defineComponent({
 
 	&__retry {
 		display: inline-block;
-		text-align: center;
 	}
 }
 
