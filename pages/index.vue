@@ -8,7 +8,7 @@
 		<div class="root">
 			<h2>So funktioniert's:</h2>
 			<ol class="content index__instructions">
-				<li><CardsIcon /> Karte Ziehen</li>
+				<li><CardsIcon /> Karte ziehen</li>
 				<li><DiceIcon /> Textart würfeln</li>
 				<li><PenIcon /> Drauf los schreiben</li>
 			</ol>
