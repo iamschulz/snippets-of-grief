@@ -19,8 +19,8 @@
 		"alt": "Neue Wege – neue Chancen. Bei einfachen Leuten entsteht Wissen und Weisheit aus dem Leid. Wie wird die Seele krisenfest?",
 		"landscape": false
 	},
-	{ "id": 9, "alt": "########################", "landscape": false },
-	{ "id": 10, "alt": "########################", "landscape": false },
+	{ "id": 9, "alt": "Sorge führt in die Irre", "landscape": true },
+	{ "id": 10, "alt": "Mitgefühl liegt mir im Blut", "landscape": true },
 	{
 		"id": 11,
 		"alt": "Bewusster Wandel. Wettlauf der Gefühle. Freiheit ohne Grenzen. Die Richtige Lösung: Heile dein Herz. ",
@@ -42,7 +42,11 @@
 		"alt": "Heimatsuche auf dem Weg in ein neues Leben. Herausforderungen erkennen. Chancen nutzen!",
 		"landscape": true
 	},
-	{ "id": 20, "alt": "########################", "landscape": true },
+	{
+		"id": 20,
+		"alt": "„Von klein auf verbunden.“ Nichts, was unserem Leben wirklich Bedeutung verleiht, endet mit der eigenen Existenz",
+		"landscape": false
+	},
 	{
 		"id": 21,
 		"alt": "Flucht in die Arbeit. Treiber oder Getriebene? Permanent beschäftigt. Die Angst vor Chaos als Lebensform.",
@@ -112,7 +116,11 @@
 	},
 	{ "id": 52, "alt": "Mission Abschied und Neuanfang. Und ich weiß, wie das geht.", "landscape": true },
 	{ "id": 53, "alt": "Einfach anders: Einfach stark.", "landscape": false },
-	{ "id": 54, "alt": "########################", "landscape": true },
+	{
+		"id": 54,
+		"alt": "survive. Auf der dunklen Seite. Wertvolle Traurigkeit. Die Oase trocknet aus.",
+		"landscape": true
+	},
 	{ "id": 55, "alt": "Kleines Glück. „Ich versuche, ein Gespür für Wunder zu kultivieren“", "landscape": true },
 	{ "id": 56, "alt": "Ganz entspannt im Hier und Jetzt. Komme doch, was wolle.", "landscape": false },
 	{ "id": 57, "alt": "Grenzenlose Love Story. Love Love Love love", "landscape": false },
@@ -120,5 +128,16 @@
 	{ "id": 59, "alt": "Hallo mein Herz. Ist da wer?", "landscape": false },
 	{ "id": 60, "alt": "Der schwere Weg zur Einfachheit. „Kein Grund, sich auszuruhen.“", "landscape": true },
 	{ "id": 61, "alt": "Ich brauche Entspannung. Was tut mit gut?", "landscape": false },
-	{ "id": 62, "alt": "Alles auf Anfang. Zurück zur Ruhe.", "landscape": false }
+	{ "id": 62, "alt": "Alles auf Anfang. Zurück zur Ruhe.", "landscape": false },
+	{ "id": 63, "alt": "Hart im Nehmen. Hart gescheitert. Wir schaffen das.", "landscape": false },
+	{ "id": 64, "alt": "Bewusstsein braucht mehr Resonanz", "landscape": true },
+	{ "id": 65, "alt": "Was bleibt von mir? Horizont statt Deadline", "landscape": true },
+	{ "id": 66, "alt": "Die Gefühle meines Lebens. Ganz großes Kino. ", "landscape": true },
+	{ "id": 67, "alt": "Wachstum bringt das Licht", "landscape": false },
+	{ "id": 68, "alt": "Hör‘ auf dein Gefühl. Due weißt mehr, als du denkst.", "landscape": false },
+	{ "id": 69, "alt": "Freiheit genießen. Unverzichtbar für die Zukunft.", "landscape": true },
+	{ "id": 70, "alt": "Neuland. Urlaub ist das nicht. ", "landscape": false },
+	{ "id": 71, "alt": "Mal richtig runterkommen! mach‘s mit.", "landscape": true },
+	{ "id": 72, "alt": "Frei sein in einer neuen Dimension", "landscape": true },
+	{ "id": 73, "alt": "Unser Geheimrezept: Kraft", "landscape": true }
 ]

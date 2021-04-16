@@ -43,6 +43,8 @@
 </template>
 
 <script>
+// todo: fancyschmancy - add animated icons, add 404 page
+
 import Header from '@/components/Header.vue'
 import AppIcon from '@/assets/AppIcon.svg?inline'
 import CardsIcon from '@/assets/CardsIcon.svg?inline'
