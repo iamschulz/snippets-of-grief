@@ -3,7 +3,7 @@
 		<div class="header__icon">
 			<slot name="icon"></slot>
 		</div>
-		<h1 class="header__title">
+		<h1 class="header__title cursive">
 			<slot name="title"></slot>
 		</h1>
 	</div>

@@ -189,7 +189,7 @@ h3,
 h4,
 h5,
 h6 {
-	@extend .cursive;
+	//@extend .cursive;
 	font-weight: normal;
 	padding: 0 0.5ch;
 	margin-bottom: 0;
@@ -215,6 +215,17 @@ hr {
 	height: 0.125rem;
 	background: var(--accent-gradient);
 	border: none;
+}
+
+ol {
+	li {
+		padding-left: 1ch;
+		&::marker {
+			@extend .cursive;
+			font-size: 1.5rem;
+			color: var(--accent-red);
+		}
+	}
 }
 
 summary {
