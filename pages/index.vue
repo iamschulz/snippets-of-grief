@@ -1,6 +1,5 @@
 <template lang="html">
 	<div>
-		<!-- todo: update content -->
 		<Header>
 			<template v-slot:title> Snippets of Grief </template>
 			<template v-slot:icon><AppIcon /></template>
@@ -43,7 +42,7 @@
 </template>
 
 <script>
-// todo: fancyschmancy - add animated icons, add 404 page
+// todo: fancyschmancy - add animated icons
 
 import Header from '@/components/Header.vue'
 import AppIcon from '@/assets/AppIcon.svg?inline'

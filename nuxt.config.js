@@ -14,6 +14,16 @@ export default {
 		link: [{ rel: 'icon', type: 'image/x-icon', href: 'AppIcon.svg' }],
 	},
 
+	router: {
+		extendRoutes(routes, resolve) {
+			routes.push({
+				name: 'custom',
+				path: '*',
+				component: resolve(__dirname, 'pages/404.vue'),
+			})
+		},
+	},
+
 	// Global CSS: https://go.nuxtjs.dev/config-css
 	css: [],
 
