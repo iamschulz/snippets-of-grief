@@ -6,6 +6,7 @@
 		:data-is-active="isActive()"
 		:data-landscape="card.landscape"
 	>
+		<!-- todo: optimize image, test images for offline app -->
 		<img
 			class="card__content"
 			:src="isActive() || !lazyLoad ? `/cards/1920/card${card.id}.jpg` : '#'"
