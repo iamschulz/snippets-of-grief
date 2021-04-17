@@ -215,6 +215,7 @@ a,
 	font-size: inherit;
 	text-decoration: underline;
 	cursor: pointer;
+	padding: 0;
 }
 
 hr {
@@ -285,5 +286,12 @@ summary {
 	transform: scale(0) rotate(8deg);
 	opacity: 0;
 	transition: transform 0.2s ease-out, opacity 0.1s ease-out;
+}
+
+// disable pull to refresh when in app mode
+@media all and (display-mode: standalone) {
+	body {
+		overscroll-behavior-y: contain;
+	}
 }
 </style>

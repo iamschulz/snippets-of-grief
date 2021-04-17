@@ -44,8 +44,6 @@
 </template>
 
 <script>
-// todo: custom a2hs, disable scroll2reload when app
-
 import { defineComponent, ref, onMounted } from '@nuxtjs/composition-api'
 import Header from '@/components/Header.vue'
 import AppIcon from '@/assets/AppIcon.svg?inline'

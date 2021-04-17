@@ -6,7 +6,7 @@
 		:data-is-active="isActive()"
 		:data-landscape="card.landscape"
 	>
-		<!-- todo: optimize image, test images for offline app -->
+		<!-- todo: cache images when installing app -->
 		<nuxt-picture
 			class="card__content"
 			format="webp"
