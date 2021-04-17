@@ -145,7 +145,7 @@ export default defineComponent({
 
 			// add user text
 			const onWrapText = wrapText(ctx, userText, textOffset, textY, textWidth, 80)
-			const onImageLoad = loadImage(`/cards/1920/card${cardId}.jpg`)
+			const onImageLoad = loadImage(`/cards/card${cardId}.jpg`)
 
 			await Promise.all([onImageLoad, onWrapText]).then(() => {
 				store.setShareImage(convertToImage(c.toDataURL('image/jpeg')))
