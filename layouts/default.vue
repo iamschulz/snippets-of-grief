@@ -14,6 +14,7 @@ export default defineComponent({
 	provide: {
 		store,
 	},
+
 	components: {
 		Footer,
 	},
@@ -206,8 +207,14 @@ details {
 	line-height: 1.4;
 }
 
-a {
+a,
+.link {
 	color: inherit;
+	background: none;
+	border: none;
+	font-size: inherit;
+	text-decoration: underline;
+	cursor: pointer;
 }
 
 hr {

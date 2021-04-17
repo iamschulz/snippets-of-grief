@@ -5,11 +5,55 @@
 				<a href="/">Snippets of Grief</a>
 				&copy; {{ new Date().getFullYear() }}
 				<a href="http://fräulein-schwarz.de" target="_blank" rel="noopener">Wiebke Jahns</a>
-				<!-- todo: &bull; <a href="">App installieren</a> bzw. App updaten -->
+				<template v-if="showInstallPromotion">
+					&bull; <button class="link" @click="onInstallClick">App installieren</button>
+				</template>
 			</div>
 		</div>
 	</footer>
 </template>
+
+<script>
+import { defineComponent, ref, onMounted } from '@vue/composition-api'
+
+export default defineComponent({
+	setup() {
+		/*
+		custom a2hs via https://web.dev/customize-install/#how-to-provide-your-own-in-app-install-experience
+		*/
+
+		const showInstallPromotion = ref(false)
+		let deferredPrompt
+
+		const onInstallClick = async () => {
+			// Hide the app provided install promotion
+			showInstallPromotion.value = false
+			// Show the install prompt
+			deferredPrompt.prompt()
+			// Wait for the user to respond to the prompt
+			await deferredPrompt.userChoice
+			// We've used the prompt, and can't use it again, throw it away
+			deferredPrompt = null
+		}
+
+		onMounted(() => {
+			window.addEventListener('beforeinstallprompt', (e) => {
+				// Prevent the mini-infobar from appearing on mobile
+				e.preventDefault()
+				// Stash the event so it can be triggered later.
+				deferredPrompt = e
+				// Update UI notify the user they can install the PWA
+				showInstallPromotion.value = true
+			})
+		})
+
+		return {
+			onInstallClick,
+			showInstallPromotion,
+		}
+	},
+})
+</script>
 
 <style lang="scss" scoped>
 .footer {
