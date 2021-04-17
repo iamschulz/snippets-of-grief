@@ -27,7 +27,7 @@
 					<li>Aus einzelnen Wörtern des Textes ein Gedicht schreiben</li>
 					<li>Ein Bild dazu zeichnen</li>
 					<li>Den Text auf vorlesen oder singen (Wie fühlt sich das an?)</li>
-					<li>Die Persoektive wechseln und eine Reaktion oder eine Antwort darauf verfassen</li>
+					<li>Die Perspektive wechseln und eine Reaktion oder eine Antwort darauf verfassen</li>
 					<li>Das Schriftstück in einer Collage weiter verarbeiten</li>
 				</ul>
 			</div>

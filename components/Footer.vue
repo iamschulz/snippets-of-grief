@@ -5,7 +5,7 @@
 				<a href="/">Snippets of Grief</a>
 				&copy; {{ new Date().getFullYear() }}
 				<a href="http://fräulein-schwarz.de" target="_blank" rel="noopener">Wiebke Jahns</a>
-				<!-- todo: &bull; <a href="">App installieren</a> -->
+				<!-- todo: &bull; <a href="">App installieren</a> bzw. App updaten -->
 			</div>
 		</div>
 	</footer>
