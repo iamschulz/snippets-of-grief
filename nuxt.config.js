@@ -40,6 +40,7 @@ export default {
 		'@nuxtjs/composition-api',
 		'@nuxtjs/pwa',
 		'@nuxtjs/svg',
+		'@nuxt/image',
 	],
 
 	// Modules: https://go.nuxtjs.dev/config-modules
@@ -74,6 +75,13 @@ export default {
 		},
 		workbox: {
 			preCaching: ['/cardCover-290.jpg'],
+		},
+	},
+
+	image: {
+		screens: {
+			s: 1060,
+			l: 1400,
 		},
 	},
 

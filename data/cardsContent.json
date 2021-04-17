@@ -119,7 +119,7 @@
 	{
 		"id": 54,
 		"alt": "survive. Auf der dunklen Seite. Wertvolle Traurigkeit. Die Oase trocknet aus.",
-		"landscape": true
+		"landscape": false
 	},
 	{ "id": 55, "alt": "Kleines Glück. „Ich versuche, ein Gespür für Wunder zu kultivieren“", "landscape": true },
 	{ "id": 56, "alt": "Ganz entspannt im Hier und Jetzt. Komme doch, was wolle.", "landscape": false },

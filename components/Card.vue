@@ -7,11 +7,12 @@
 		:data-landscape="card.landscape"
 	>
 		<!-- todo: optimize image, test images for offline app -->
-		<img
+		<nuxt-picture
 			class="card__content"
-			:src="isActive() || !lazyLoad ? `/cards/1920/card${card.id}.jpg` : '#'"
-			:data-src="`/cards/1920/card${card.id}.jpg`"
+			format="webp"
+			:src="isActive() || !lazyLoad ? `/cards/card${card.id}.jpg` : '#'"
 			:alt="card.alt"
+			sizes="s:190px l:240px"
 		/>
 	</article>
 </template>
@@ -65,7 +66,7 @@ export default defineComponent({
 })
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 .card {
 	--active: 0;
 	--border-radius: 0.3125rem;
@@ -80,6 +81,7 @@ export default defineComponent({
 	transform-style: preserve-3d;
 	backface-visibility: hidden;
 	transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+	overflow: hidden;
 
 	&.is--simple,
 	&.is--simple * {
@@ -109,8 +111,10 @@ export default defineComponent({
 		transform: rotateY(180deg);
 	}
 
-	&__content {
+	&__content img {
 		position: absolute;
+		top: 0;
+		left: 0;
 		display: grid;
 		place-items: center;
 		grid-gap: 1em;

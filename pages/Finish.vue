@@ -99,6 +99,8 @@ export default defineComponent({
 
 	&__retry {
 		display: inline-block;
+		width: 10rem;
+		text-align: center;
 	}
 }
 
