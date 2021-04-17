@@ -1,6 +1,6 @@
 <template>
 	<article
-		:class="`card ${simple && 'is--simple'} elevation-2`"
+		:class="`card ${simple ? 'is--simple' : ''} elevation-2`"
 		:data-id="card.id"
 		:data-index="index"
 		:data-is-active="isActive()"
@@ -10,7 +10,11 @@
 		<nuxt-picture
 			class="card__content"
 			format="webp"
-			:src="isActive() || !lazyLoad ? `/cards/card${card.id}.jpg` : '#'"
+			:src="
+				isActive() || !lazyLoad
+					? `/cards/card${card.id}.jpg`
+					: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
+			"
 			:alt="card.alt"
 			sizes="s:190px l:240px"
 		/>
@@ -81,7 +85,6 @@ export default defineComponent({
 	transform-style: preserve-3d;
 	backface-visibility: hidden;
 	transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
-	overflow: hidden;
 
 	&.is--simple,
 	&.is--simple * {
@@ -111,27 +114,35 @@ export default defineComponent({
 		transform: rotateY(180deg);
 	}
 
-	&__content img {
-		position: absolute;
-		top: 0;
-		left: 0;
-		display: grid;
-		place-items: center;
-		grid-gap: 1em;
-		text-align: center;
-		font-family: sans-serif;
-		color: #333;
-		pointer-events: all;
-		backface-visibility: hidden;
+	&__content {
 		width: 100%;
 		height: 100%;
-		object-fit: cover;
-		transition: opacity 0.5s ease-out;
+		border-radius: var(--border-radius);
+		overflow: hidden;
+		position: relative;
 
-		&[src=''],
-		&[src='#'],
-		&:not([src]) {
-			opacity: 0;
+		img {
+			position: absolute;
+			top: 0;
+			left: 0;
+			display: grid;
+			place-items: center;
+			grid-gap: 1em;
+			text-align: center;
+			font-family: sans-serif;
+			color: #333;
+			pointer-events: all;
+			backface-visibility: hidden;
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
+			transition: opacity 0.5s ease-out;
+
+			&[src=''],
+			&[src='#'],
+			&:not([src]) {
+				opacity: 0;
+			}
 		}
 	}
 

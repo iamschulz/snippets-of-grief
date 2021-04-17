@@ -140,9 +140,6 @@ export default defineComponent({
 		transform: scale(0.91);
 	}
 
-	.animated-face + rect {
-	}
-
 	&.inert {
 		.animated-dice {
 			transform: translateY(20px) rotateX(-21deg) rotateY(10deg) scale(0.8);
