@@ -85,6 +85,7 @@ export default defineComponent({
 	transform-style: preserve-3d;
 	backface-visibility: hidden;
 	transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+	z-index: var(--card-index);
 
 	&.is--simple,
 	&.is--simple * {
@@ -111,7 +112,7 @@ export default defineComponent({
 		background-position: center center;
 		z-index: 2;
 		backface-visibility: hidden;
-		transform: rotateY(180deg);
+		transform: rotateY(180deg) translateZ(1px);
 	}
 
 	&__content {
@@ -137,6 +138,7 @@ export default defineComponent({
 			height: 100%;
 			object-fit: cover;
 			transition: opacity 0.5s ease-out;
+			border-radius: var(--border-radius);
 
 			&[src=''],
 			&[src='#'],

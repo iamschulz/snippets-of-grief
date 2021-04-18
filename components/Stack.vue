@@ -92,6 +92,7 @@ export default defineComponent({
 		transition: transform 0.4s ease-out;
 		height: 11.25rem;
 		width: 18.125rem;
+		transform: translate(0, 0);
 
 		&:focus {
 			outline: none;
