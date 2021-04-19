@@ -39,6 +39,10 @@ export default defineComponent({
 		const activeText = ref<Text | null>(null)
 
 		const rollDice = () => {
+			if (isRolling.value) {
+				return
+			}
+
 			diceValue.value = Math.ceil(Math.random() * 6)
 
 			isRolling.value = 'start'
