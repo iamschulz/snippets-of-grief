@@ -2,7 +2,7 @@
 	<div>
 		<Header>
 			<template v-slot:title> Snippets of Grief </template>
-			<template v-slot:icon><AppIcon /></template>
+			<template v-slot:icon><AppIcon aria-label="Logo: Eine rote Karte verdeckt eine blaue Karte." /></template>
 		</Header>
 		<div class="root">
 			<div class="content">

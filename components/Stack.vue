@@ -28,6 +28,7 @@
 import { defineComponent, inject, ref } from '@nuxtjs/composition-api'
 import { StoreInterface, Card as CardType } from '~/storeObject/store'
 import Card from './Card.vue'
+// todo: focus next button on stack draw
 
 export default defineComponent({
 	setup() {
