@@ -13,7 +13,7 @@ export default defineComponent({
 		const card = store.getCardById(cardId)
 		const texts = store.getTexts()
 		const text = texts[store.getActiveTextId() || 0]
-		const userText = `${text.title}\n\n${store.getUserText()}`
+		const userText = store.getUserText()
 
 		const wrapText = async (
 			ctx: CanvasRenderingContext2D,
@@ -93,8 +93,9 @@ export default defineComponent({
 				return null
 			}
 
+			const headlineY = card.landscape ? 1000 : 300
 			const textX = card.landscape ? 40 : 800
-			const textY = card.landscape ? 1000 : 300
+			const textY = headlineY + 120
 			const textWidth = card.landscape ? 1840 : 1080
 
 			// set height
@@ -111,6 +112,13 @@ export default defineComponent({
 			ctx.font = '100px Accent'
 			ctx.fillStyle = '#000'
 			ctx.fillText('Snippets of Grief', 585, 140)
+
+			// add title
+			ctx.font = '60px Inter'
+			ctx.fillText(text.title, textOffset, headlineY)
+			const headlineMeasures = ctx.measureText(text.title)
+			ctx.fillRect(textOffset, headlineY + 10, headlineMeasures.width, 2)
+			ctx.font = '50px Inter'
 
 			// add image to canvas
 			const loadImage = (url: string): Promise<void> => {
