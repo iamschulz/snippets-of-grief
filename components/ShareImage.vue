@@ -9,9 +9,11 @@ import { StoreInterface } from '~/storeObject/store'
 export default defineComponent({
 	setup() {
 		const store = inject('store') as StoreInterface
-		const userText = store.getUserText()
 		const cardId = store.getActiveCardId()
 		const card = store.getCardById(cardId)
+		const texts = store.getTexts()
+		const text = texts[store.getActiveTextId() || 0]
+		const userText = `${text.title}\n\n${store.getUserText()}`
 
 		const wrapText = async (
 			ctx: CanvasRenderingContext2D,
@@ -105,7 +107,7 @@ export default defineComponent({
 			ctx.fillStyle = '#ebf2ff'
 			ctx.fillRect(0, 0, c.width, c.height)
 
-			// add title
+			// add headline
 			ctx.font = '100px Accent'
 			ctx.fillStyle = '#000'
 			ctx.fillText('Snippets of Grief', 585, 140)
