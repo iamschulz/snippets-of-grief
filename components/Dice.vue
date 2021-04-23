@@ -8,7 +8,6 @@
 		@keydown.space="rollDice"
 		tabindex="0"
 		aria-live="polite"
-		aria-label="Würfel - Klicken zum würfeln"
 	>
 		<div class="dice__object">
 			<span
@@ -16,12 +15,14 @@
 				:key="index"
 				class="dice__face"
 				:data-side="`dice-${index + 1}`"
-				:aria-hidden="diceValue - 1 !== index"
+				aria-hidden="true"
 			>
 				{{ side.title }}
 			</span>
 		</div>
-		<span v-if="activeText" class="visually-hidden">gewürfelter Wert: {{ activeText.title }}</span>
+		<span id="diceLabel" class="visually-hidden"
+			>Würfel {{ activeText && ` - gewürfelter Wert: ${activeText.title}` }} - Klicken zum würfeln</span
+		>
 	</div>
 </template>
 
