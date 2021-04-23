@@ -16,33 +16,57 @@
 				:tabindex="card.id === getActiveId() ? -1 : 0"
 			>
 				<Card :cardId="card.id" :index="index" :lazyLoad="index !== content.length - 1" />
+				<a
+					v-if="card.id === getActiveId()"
+					href="#"
+					class="skip-link small stack__skip-next"
+					@click="onSkip"
+					@keydown.enter="onSkip"
+					@keydown.space="onSkip"
+				>
+					Zum Weiter-Button springen
+				</a>
 			</li>
 		</ul>
-		<span aria-live="polite" class="visually-hidden">
+		<span aria-live="polite">
 			<span v-if="activeCard && activeCard.alt"> Aktive Karte: {{ activeCard.alt }} </span>
 		</span>
 	</div>
 </template>
 
 <script lang="ts">
-import { defineComponent, inject, ref } from '@nuxtjs/composition-api'
+import { defineComponent, inject, ref, nextTick } from '@nuxtjs/composition-api'
 import { StoreInterface, Card as CardType } from '~/storeObject/store'
 import Card from './Card.vue'
 // todo: focus next button on stack draw
 
 export default defineComponent({
-	setup() {
+	setup(props, { emit }) {
 		const store = inject('store') as StoreInterface
 		const content = store.getRandomCards()
 		const cardCount = content.length
+		const skipNextButtonEl = ref<any | null>(null)
 
 		const getActiveId = () => store.getActiveCardId()
+		const getActiveCard = () => store.getCardById(getActiveId())
+		const activeCard = ref<CardType | null>(null)
+
 		const onActivate = (e: Event, id: null | number) => {
 			;(e.target as HTMLElement).blur()
 			store.setActiveCardId(id)
+
+			if (e.type === 'keydown') {
+				nextTick(() => {
+					skipNextButtonEl.value?.$el.focus()
+				})
+			}
+
+			activeCard.value = getActiveCard()
 		}
 
-		const activeCard = ref<CardType>(store.getCardById(getActiveId()))
+		const onSkip = () => {
+			emit('skip')
+		}
 
 		return {
 			cardCount,
@@ -50,6 +74,8 @@ export default defineComponent({
 			getActiveId,
 			activeCard,
 			onActivate,
+			onSkip,
+			skipNextButtonEl,
 		}
 	},
 
@@ -73,6 +99,13 @@ export default defineComponent({
 	&__skip {
 		position: absolute;
 		margin-top: -1rem;
+	}
+
+	&__skip-next {
+		position: absolute;
+		bottom: -3.75rem;
+		top: unset !important;
+		z-index: 80;
 	}
 
 	&__shadow {

@@ -38,7 +38,6 @@ export default defineComponent({
 		const diceValue = ref(0)
 		const isRolling = ref<'rolling' | 'start' | null>(null)
 		const activeText = ref<Text | null>(null)
-		// todo: focus next button on dice roll
 
 		const rollDice = () => {
 			if (isRolling.value) {
