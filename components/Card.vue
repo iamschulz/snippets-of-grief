@@ -15,7 +15,7 @@
 					? `/cards/card${card.id}.jpg`
 					: 'data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7'
 			"
-			:alt="card.alt"
+			:alt="isActive() ? card.alt : 'Verdeckte Karte'"
 			sizes="s:190px l:240px"
 		/>
 	</article>

@@ -29,7 +29,7 @@ export default defineComponent({
 		store.setActiveTextId(null)
 		store.setUserText(null)
 		const isCardSelected = () => store.getActiveCardId() !== null
-		const nextButtonEl = ref<HTMLButtonElement | null>(null)
+		const nextButtonEl = ref<any | null>(null)
 
 		const onSkip = () => {
 			nextTick(() => {

@@ -29,7 +29,9 @@
 			</li>
 		</ul>
 		<span aria-live="polite">
-			<span v-if="activeCard && activeCard.alt"> Aktive Karte: {{ activeCard.alt }} </span>
+			<span v-if="activeCard && activeCard.alt" class="visually-hidden">
+				Aktive Karte: {{ activeCard.alt }}
+			</span>
 		</span>
 	</div>
 </template>
