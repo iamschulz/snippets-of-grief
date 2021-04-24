@@ -139,6 +139,8 @@ export default defineComponent({
 			object-fit: cover;
 			transition: opacity 0.5s ease-out;
 			border-radius: var(--border-radius);
+			-webkit-print-color-adjust: exact !important;
+			color-adjust: exact !important;
 
 			&[src=''],
 			&[src='#'],
@@ -154,6 +156,12 @@ export default defineComponent({
 
 	&[data-is-active='true'] {
 		--active: 1;
+	}
+}
+
+@media print {
+	.card[data-is-active='true']::before {
+		display: none;
 	}
 }
 </style>

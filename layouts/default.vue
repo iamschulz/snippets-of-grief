@@ -294,4 +294,11 @@ summary {
 		overscroll-behavior-y: contain;
 	}
 }
+
+@media print {
+	:root {
+		--background: white;
+		--contrast: black;
+	}
+}
 </style>

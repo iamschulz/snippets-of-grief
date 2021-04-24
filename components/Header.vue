@@ -48,4 +48,11 @@
 		}
 	}
 }
+
+@media print {
+	.header[class*='elevation'] {
+		box-shadow: none;
+		position: relative;
+	}
+}
 </style>
