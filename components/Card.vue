@@ -7,6 +7,9 @@
 		:data-landscape="card.landscape"
 	>
 		<!-- todo: cache images when installing app -->
+		<p v-if="isActive()" class="card__text" aria-hidden="true">
+			{{ card.alt }}
+		</p>
 		<nuxt-picture
 			class="card__content"
 			format="webp"
@@ -84,7 +87,7 @@ export default defineComponent({
 	background-color: #eee;
 	transform-style: preserve-3d;
 	backface-visibility: hidden;
-	transition: transform 0.4s ease-out, box-shadow 0.4s ease-out;
+	transition: transform 0.4s ease-out, box-shadow 0.4s ease-out, opacity 0.4s ease-out;
 	z-index: var(--card-index);
 
 	&.is--simple,
@@ -115,12 +118,20 @@ export default defineComponent({
 		transform: rotateY(180deg) translateZ(1px);
 	}
 
+	&__text {
+		position: absolute;
+		top: 0;
+		margin: 0;
+		padding: 0.5rem 1ch;
+	}
+
 	&__content {
 		width: 100%;
 		height: 100%;
 		border-radius: var(--border-radius);
 		overflow: hidden;
 		position: relative;
+		opacity: 1;
 
 		img {
 			position: absolute;
