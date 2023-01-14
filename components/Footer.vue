@@ -3,8 +3,7 @@
 		<div class="content footer__inner">
 			<div class="footer__content">
 				<a href="/">Snippets of Grief</a>
-				&copy; {{ new Date().getFullYear() }}
-				<a href="http://fräulein-schwarz.de" target="_blank" rel="noopener">Wiebke Jahns</a>
+				&copy; {{ new Date().getFullYear() }} Wiebke Jahns & <a href="https://iamschulz.com">Daniel Schulz</a>
 				<template v-if="showInstallPromotion">
 					&bull; <button class="link" @click="onInstallClick">App installieren</button>
 				</template>
